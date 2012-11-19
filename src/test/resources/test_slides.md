@@ -6,7 +6,7 @@
 # About the company
 
   - Founded in 2011
-  - Accumulated a lot of software developement experience in large projects around the globe
+  - Accumulated a lot of software development experience in large projects around the globe
   - Experts in the JVM-based technologies and enterprise/integration arena
   - Passionate about software quality
   - We are cool, stick with us
