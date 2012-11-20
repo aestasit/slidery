@@ -8,13 +8,19 @@
 
 <% slides.each { slide -> %>
   <section>
-     <h1><%= slide.getElementsByTag("header")?.first()?.text() %></h1>     
-     <%= slide.getElementsByTag("div")?.first()?.html() %>
-     <% def notes = slide.getElementsByTag("aside")?.first() %>
-     <% if (notes) { %>
-     <details>
-       <%= notes.html() %>
-     </details>       
+     <% def slideContent = slide.select("div")?.first()?.html() %>
+     <% def slideTitle = slide.select("header")?.first()?.text() %>     
+     <% if (slideContent?.trim()) { %>
+       <h3><%= slideTitle %></h3>
+     <% } else { %>  
+       <h2><%= slideTitle %></h2>     
+     <% } %>         
+     <%= slideContent %>
+     <% def slideNotes = slide.select("aside")?.first() %>
+     <% if (slideNotes) { %>
+     <div role="note">
+       <%= slideNotes?.html() %>
+     </div>       
      <% } %>
   </section>
 <% } %>
