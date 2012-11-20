@@ -1,4 +1,4 @@
-package com.aestasit.markdown;
+package com.aestasit.markdown.visitors;
 
 import java.io.PrintStream;
 
@@ -45,11 +45,11 @@ import org.pegdown.ast.WikiLinkNode;
  * Mark-down text extractor.
  * 
  */
-public class TextPrinter extends BaseVisitor implements Visitor {
+public class TextExtractor extends BaseVisitor implements Visitor {
 
   private final PrintStream printer;
 
-  public TextPrinter(PrintStream printer) {
+  public TextExtractor(PrintStream printer) {
     super();
     this.printer = printer;
   }
@@ -240,6 +240,10 @@ public class TextPrinter extends BaseVisitor implements Visitor {
   public void visit(Node node) {
     logNode(node);
     visitChildren(node);
+  }
+
+  public String getText(RootNode node) {
+    return null;
   }
 
 }

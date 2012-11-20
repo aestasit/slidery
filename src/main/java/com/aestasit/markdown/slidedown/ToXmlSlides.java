@@ -47,19 +47,27 @@ import org.pegdown.ast.VerbatimNode;
 import org.pegdown.ast.Visitor;
 import org.pegdown.ast.WikiLinkNode;
 
-import com.aestasit.markdown.BaseVisitor;
+import com.aestasit.markdown.visitors.BaseVisitor;
 import com.google.common.base.Preconditions;
 
 public class ToXmlSlides extends BaseVisitor implements Visitor {
 
   protected Printer                          printer       = new Printer();
+  
+  // Link output handling.
   protected final Map<String, ReferenceNode> references    = new HashMap<String, ReferenceNode>();
   protected final Map<String, String>        abbreviations = new HashMap<String, String>();
   protected final LinkRenderer               linkRenderer;
 
+  // Table output handling.
   protected TableNode                        currentTableNode;
   protected int                              currentTableColumn;
   protected boolean                          inTableHeader;
+  
+  // Slide output handling.
+  private boolean                            inFirstSlide;
+  private boolean                            inSlideContent;  
+  private boolean                            inSlideNotes;  
 
   public ToXmlSlides(LinkRenderer linkRenderer) {
     this.linkRenderer = linkRenderer;
@@ -88,11 +96,29 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
       abbreviations.put(abbr, expansion);
       printer.clear();
     }
-    
-    printer.print("<slides>").indent(+2);
+
+    printer.print("<slides>").indent(+2).println();
+    printer.print("<slide>").indent(+2);
+    inFirstSlide = true;
     visitChildren(node);
+    printer.indent(-2).println().print("</slide>");
     printer.indent(-2).println().print("</slides>");
-    
+
+  }
+
+  public void visit(HeaderNode node) {
+    if (node.getLevel() == 1) {
+      if (!inFirstSlide) {
+        printer.indent(-2).println().print("</slide>");
+        printer.println().print("<slide>").indent(+2);        
+      }
+      inFirstSlide = false;
+      printer.println();
+      printTag(node, "title");      
+    } else {
+      printer.println();
+      printTag(node, "h" + node.getLevel());
+    }
   }
 
   public void visit(AbbreviationNode node) {
@@ -137,11 +163,6 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
   public void visit(ExpLinkNode node) {
     String text = printChildrenToString(node);
     printLink(linkRenderer.render(node, text));
-  }
-
-  public void visit(HeaderNode node) {
-    printer.println();
-    printTag(node, "h" + node.getLevel());
   }
 
   public void visit(HtmlBlockNode node) {
@@ -352,8 +373,8 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
   }
 
   public void visit(Node node) {
-    // override this method for processing custom Node implementations
-    throw new RuntimeException("Not implemented");
+    // NOTE: Override this method for processing custom Node implementations
+    unknownNode(node);
   }
 
   // //////////////////////////////////////////////////////////////////////////////////////////////

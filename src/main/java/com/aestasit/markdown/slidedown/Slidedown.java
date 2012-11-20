@@ -9,7 +9,7 @@ import java.net.URL;
 import org.pegdown.LinkRenderer;
 import org.pegdown.ast.RootNode;
 
-import com.aestasit.markdown.MarkdownUtils;
+import com.aestasit.markdown.Markdown;
 import com.google.common.base.Preconditions;
 
 public final class Slidedown {
@@ -21,22 +21,22 @@ public final class Slidedown {
 
   public static String toSlides(InputStream stream) throws IOException {
     Preconditions.checkNotNull(stream, "inputStream");
-    return getConverter().toXml(MarkdownUtils.parse(stream));
+    return getConverter().toXml(Markdown.toAst(stream));
   }
 
   public static String toSlides(String text) throws IOException {
     Preconditions.checkNotNull(text, "text");
-    return getConverter().toXml(MarkdownUtils.parse(new ByteArrayInputStream(text.getBytes())));
+    return getConverter().toXml(Markdown.toAst(new ByteArrayInputStream(text.getBytes())));
   }
 
   public static String toSlides(File file) throws IOException {
     Preconditions.checkNotNull(file, "file");
-    return getConverter().toXml(MarkdownUtils.parse(file.getAbsolutePath()));
+    return getConverter().toXml(Markdown.toAst(file));
   }
 
   public static String toSlides(URL url) throws IOException {
     Preconditions.checkNotNull(url, "url");
-    return getConverter().toXml(MarkdownUtils.parse(url.openStream()));
+    return getConverter().toXml(Markdown.toAst(url.openStream()));
   }
 
   private static ToXmlSlides getConverter() {

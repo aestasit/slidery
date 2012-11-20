@@ -3,14 +3,12 @@ package com.aestasit.markdown.slidedown;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.junit.Test;
 import org.pegdown.ast.RootNode;
 
-import com.aestasit.markdown.MarkdownUtils;
+import com.aestasit.markdown.Markdown;
 
-public class ToHtmlSlidesTest {
+public class ToXmlSlidesTest {
 
   @Test
   public void test() throws IOException {
@@ -18,14 +16,10 @@ public class ToHtmlSlidesTest {
     String slides = Slidedown.toSlides(getTestDocument("test_slides.md"));
     System.out.println(slides);
 
-    Document document = Jsoup.parse(slides);
-    
-    
-    
   }
 
   private RootNode getTestDocument(String fileName) throws IOException {
-    return MarkdownUtils.parse(getTestData(fileName));
+    return Markdown.toAst(getTestData(fileName));
   }
 
   private InputStream getTestData(String fileName) throws IOException {

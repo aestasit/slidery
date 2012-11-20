@@ -1,6 +1,4 @@
-package com.aestasit.markdown;
-
-import java.io.PrintStream;
+package com.aestasit.markdown.visitors;
 
 import org.pegdown.ast.AbbreviationNode;
 import org.pegdown.ast.AutoLinkNode;
@@ -41,20 +39,7 @@ import org.pegdown.ast.VerbatimNode;
 import org.pegdown.ast.Visitor;
 import org.pegdown.ast.WikiLinkNode;
 
-/**
- * Mark-down re-printer.
- * 
- * @author Andrey Adamovich
- * 
- */
-public class EchoPrinter extends BaseVisitor implements Visitor {
-
-  private final PrintStream printer;
-
-  public EchoPrinter(PrintStream printer) {
-    super();
-    this.printer = printer;
-  }
+public class LoggingVisitor extends BaseVisitor implements Visitor {
 
   public void visit(AbbreviationNode node) {
     logNode(node);
@@ -228,7 +213,6 @@ public class EchoPrinter extends BaseVisitor implements Visitor {
 
   public void visit(TextNode node) {
     logNode(node);
-    printer.print(node.getText());
     visitChildren(node);
   }
 

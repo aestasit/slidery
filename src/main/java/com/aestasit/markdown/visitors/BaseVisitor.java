@@ -1,8 +1,8 @@
-package com.aestasit.markdown;
-
+package com.aestasit.markdown.visitors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.pegdown.ast.Node;
+import org.pegdown.ast.RootNode;
 import org.pegdown.ast.Visitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * Base visitor class.
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public abstract class BaseVisitor implements Visitor {
 
@@ -21,7 +21,11 @@ public abstract class BaseVisitor implements Visitor {
   protected void visitChildren(final Node node) {
     level++;
     for (final Node child : node.getChildren()) {
-      child.accept(this);
+      if (child instanceof RootNode) {
+        visitChildren(child);
+      } else {
+        child.accept(this);
+      }
     }
     level--;
   }
