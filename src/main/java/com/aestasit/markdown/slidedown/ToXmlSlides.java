@@ -50,10 +50,12 @@ import org.pegdown.ast.WikiLinkNode;
 import com.aestasit.markdown.visitors.BaseVisitor;
 import com.google.common.base.Preconditions;
 
+import static com.aestasit.markdown.slidedown.ToXmlSlides.SlideComponent.*;
+
 public class ToXmlSlides extends BaseVisitor implements Visitor {
 
   protected Printer                          printer       = new Printer();
-  
+
   // Link output handling.
   protected final Map<String, ReferenceNode> references    = new HashMap<String, ReferenceNode>();
   protected final Map<String, String>        abbreviations = new HashMap<String, String>();
@@ -63,11 +65,15 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
   protected TableNode                        currentTableNode;
   protected int                              currentTableColumn;
   protected boolean                          inTableHeader;
-  
+
   // Slide output handling.
   private boolean                            inFirstSlide;
-  private boolean                            inSlideContent;  
-  private boolean                            inSlideNotes;  
+  private SlideComponent                     currentSlideComponent;
+  private boolean                            startOfContent;
+
+  protected enum SlideComponent {
+    NONE, CONTENT, NOTES
+  }
 
   public ToXmlSlides(LinkRenderer linkRenderer) {
     this.linkRenderer = linkRenderer;
@@ -97,27 +103,63 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
       printer.clear();
     }
 
-    printer.print("<slides>").indent(+2).println();
-    printer.print("<slide>").indent(+2);
-    inFirstSlide = true;
-    visitChildren(node);
-    printer.indent(-2).println().print("</slide>");
+    printer.print("<slides>").indent(+2);
+    {
+      startSlide();
+      inFirstSlide = true;
+      {
+        visitChildren(node);
+      }
+      endSlide();
+    }
     printer.indent(-2).println().print("</slides>");
 
   }
 
   public void visit(HeaderNode node) {
     if (node.getLevel() == 1) {
-      if (!inFirstSlide) {
-        printer.indent(-2).println().print("</slide>");
-        printer.println().print("<slide>").indent(+2);        
-      }
-      inFirstSlide = false;
+      endSlide();
+      startSlide();
       printer.println();
-      printTag(node, "title");      
+      printTag(node, "title");
+      startSlideContent();
     } else {
       printer.println();
       printTag(node, "h" + node.getLevel());
+    }
+  }
+
+  private void startSlide() {
+    if (!inFirstSlide) {
+      printer.println().print("<slide>").indent(+2);
+    }
+    inFirstSlide = false;
+    currentSlideComponent = NONE;
+  }
+
+  private void startSlideContent() {
+    printer.println().print("<content>").indent(+2).println();
+    currentSlideComponent = CONTENT;
+    startOfContent = true;
+  }
+
+  private void startSlideNotes() {
+    printer.indent(-2).println().print("</content>");
+    printer.println().print("<notes>").indent(+2).println();
+    currentSlideComponent = NOTES;
+    startOfContent = true;
+  }
+
+  private void endSlide() {
+    if (currentSlideComponent == CONTENT) {
+      printer.indent(-2).println().print("</content>");
+    }
+    if (currentSlideComponent == NOTES) {
+      printer.indent(-2).println().print("</notes>");
+    }
+    currentSlideComponent = NONE;
+    if (!inFirstSlide) {
+      printer.indent(-2).println().print("</slide>");
     }
   }
 
@@ -264,7 +306,7 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
         printer.print("&ndash;");
         break;
       case HRule:
-        printer.println().print("<hr/>");
+        startSlideNotes();
         break;
       case Linebreak:
         printer.print("<br/>");
@@ -382,29 +424,37 @@ public class ToXmlSlides extends BaseVisitor implements Visitor {
   // //////////////////////////////////////////////////////////////////////////////////////////////
 
   protected void printTag(TextNode node, String tag) {
+    startOfContent = false;
     printer.print('<').print(tag).print('>');
     printer.printEncoded(node.getText());
     printer.print('<').print('/').print(tag).print('>');
   }
 
   protected void printTag(SuperNode node, String tag) {
+    startOfContent = false;
     printer.print('<').print(tag).print('>');
     visitChildren(node);
     printer.print('<').print('/').print(tag).print('>');
   }
 
   protected void printIndentedTag(SuperNode node, String tag) {
-    printer.println().print('<').print(tag).print('>').indent(+2);
+    if (!startOfContent) {
+      printer.println();
+    }
+    startOfContent = false;
+    printer.print('<').print(tag).print('>').indent(+2);
     visitChildren(node);
     printer.indent(-2).println().print('<').print('/').print(tag).print('>');
   }
 
   protected void printImageTag(SuperNode imageNode, String url) {
+    startOfContent = false;
     printer.print("<img src=\"").print(url).print("\"  alt=\"").printEncoded(printChildrenToString(imageNode))
         .print("\"/>");
   }
 
   protected void printLink(LinkRenderer.Rendering rendering) {
+    startOfContent = false;
     printer.print('<').print('a');
     printAttribute("href", rendering.href);
     for (LinkRenderer.Attribute attr : rendering.attributes) {
