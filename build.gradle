@@ -1,13 +1,16 @@
 apply plugin: 'java'
-apply plugin: 'groovy'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+
 
 version = '0.1-SNAPSHOT'
 group = 'com.aestasit.markdown'
 
+
 repositories {
   mavenCentral()   
 }
+
 
 dependencies {
   
@@ -22,4 +25,63 @@ dependencies {
   testRuntime 'ch.qos.logback:logback-core:1.0.7'
   testRuntime 'ch.qos.logback:logback-classic:1.0.7'
   
+}
+
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+  from sourceSets.main.allSource
+  classifier = 'sources'
+}
+
+artifacts {
+  archives jar
+  archives javadocJar
+  archives sourcesJar
+}
+
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+
+      repository(url: repositoryUrl) {
+        authentication(userName: repositoryUsername, password: repositoryPassword)
+      }
+
+      pom.project {
+
+        name 'Slidedown'
+        packaging 'jar'
+        description 'Slidedown is a Java library to support creation of presentation slides written in Markdown.'
+        url 'https://github.com/aestasit/slidedown'
+    
+        scm {
+          url 'scm:git@github.com:aestasit/slidedown'
+          connection 'scm:git@github.com:aestasit/slidedown'
+          developerConnection 'scm:git@github.com:aestasit/slidedown'
+        }
+    
+        licenses {
+          license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            distribution 'repo'
+          }
+        }
+    
+        developers {
+          developer {
+            id 'aadamovich'
+            name 'Andrey Adamovich'
+          }
+        }
+
+      }
+    }
+  }
 }
