@@ -1,4 +1,4 @@
-package com.aestasit.markdown.slidedown;
+package com.aestasit.markdown.slidedown.converters;
 
 import static org.apache.commons.io.FileUtils.copyFileToDirectory;
 import static org.apache.commons.io.FileUtils.forceMkdir;
@@ -12,15 +12,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Collection;
+
+import org.jsoup.nodes.Document;
+
+import com.aestasit.markdown.slidedown.Slidedown;
 
 public abstract class BaseConverter {
 
   void render(Configuration config) throws IOException {
-    File joinedFile = joinInputFiles(config);
-    File parentDir = createOutputDirectory(config);
-    copyStaticFiles(config, parentDir);
-    createOutput(config, joinedFile);
-    joinedFile.delete();
+    beforeStart(config);
+    copyStaticFiles(config.getStaticFiles(), createOutputDirectory(config));
+    createOutput(config, joinInputFiles(config));
   }
 
   private File joinInputFiles(Configuration config) throws IOException {
@@ -38,9 +41,9 @@ public abstract class BaseConverter {
     return parentDir;
   }
 
-  private void copyStaticFiles(Configuration config, File parentDir) throws IOException {
-    for (File templateFile : config.getStaticFiles()) {
-      copyFileToDirectory(templateFile, parentDir);
+  private void copyStaticFiles(Collection<File> staticFiles, File outputDir) throws IOException {
+    for (File templateFile : staticFiles) {
+      copyFileToDirectory(templateFile, outputDir);
     }
   }
 
@@ -49,18 +52,21 @@ public abstract class BaseConverter {
     FileOutputStream outputStream = null;
     try {
       outputStream = openOutputStream(config.getOutputFile());
-      convert(Slidedown.toSlides(joinedFile), new OutputStreamWriter(outputStream), config);
+      convert(Slidedown.toDom(joinedFile), new OutputStreamWriter(outputStream), config);
     } finally {
       closeQuietly(outputStream);
     }
     afterConversion(joinedFile, config);
+    joinedFile.delete();
   }
 
+  protected void beforeStart(Configuration config) {
+  }
 
   protected void beforeConversion(File inputFile, Configuration config) {
   }
 
-  protected abstract void convert(String slides, Writer writer, Configuration config) throws IOException;
+  protected abstract void convert(Document slidesDocument, Writer writer, Configuration config) throws IOException;
 
   protected void afterConversion(File inputFile, Configuration config) {
   }

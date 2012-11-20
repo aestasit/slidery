@@ -1,4 +1,4 @@
-package com.aestasit.markdown.slidedown;
+package com.aestasit.markdown.slidedown.converters;
 
 import java.io.File;
 import java.nio.charset.Charset;
