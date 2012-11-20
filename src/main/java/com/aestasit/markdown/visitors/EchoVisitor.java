@@ -44,6 +44,8 @@ import org.pegdown.ast.WikiLinkNode;
 /**
  * Mark-down re-printer.
  * 
+ * TODO: finish implementation
+ * 
  * @author Andrey Adamovich
  * 
  */

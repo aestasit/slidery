@@ -44,6 +44,10 @@ import org.pegdown.ast.WikiLinkNode;
 /**
  * Mark-down text extractor.
  * 
+ * TODO: finish implementation
+ * 
+ * @author Andrey Adamovich
+ * 
  */
 public class TextExtractor extends BaseVisitor implements Visitor {
 

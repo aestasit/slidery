@@ -39,6 +39,15 @@ import org.pegdown.ast.VerbatimNode;
 import org.pegdown.ast.Visitor;
 import org.pegdown.ast.WikiLinkNode;
 
+/**
+ * 
+ * Visitor that visits every node and logs it.
+ * 
+ * TODO: add an ability to log to print stream
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class LoggingVisitor extends BaseVisitor implements Visitor {
 
   public void visit(AbbreviationNode node) {

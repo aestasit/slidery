@@ -9,12 +9,9 @@ public class MarkdownTest extends BaseTest {
 
   @Test
   public void testLoadingMethods() throws IOException {
-    
     InputStream inputStream = getTestData("test_slides.md");
-    
     Markdown.toAst(inputStream);
-    
-    
+    // TODO: extend method coverage    
   }
 
 }

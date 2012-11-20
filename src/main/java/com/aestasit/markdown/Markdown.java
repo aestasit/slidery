@@ -16,6 +16,10 @@ import com.aestasit.markdown.visitors.TextExtractor;
 
 public class Markdown {
 
+  // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // AST
+  // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public static RootNode toAst(char[] text) throws IOException {
     return new PegDownProcessor().parser.parse(text);
   }
@@ -56,6 +60,10 @@ public class Markdown {
     return toAst(url.openStream(), options);
   }
 
+  // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // MISC.
+  // ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public static String extractText(RootNode node) {
     return new TextExtractor(System.out).getText(node);
   }
@@ -63,7 +71,7 @@ public class Markdown {
   public static void echoMarkdown(RootNode node) {
     new EchoVisitor(System.out).visit(node);
   }
-
+ 
   public static void logAst(RootNode node) {
     new LoggingVisitor().visit(node);
   }
