@@ -8,8 +8,10 @@ public interface Configuration {
 
   Collection<File> getInputFiles();
 
-  Collection<File> getTemplateFiles();
+  Collection<File> getStaticFiles();
 
+  File getTemplateFile();
+  
   File getOutputFile();
 
   Charset getInputEncoding();
