@@ -1,5 +1,3 @@
-% Art of Clean Code
-% Aestas IT
 
 # Introduction
 

@@ -1,7 +1,5 @@
 package com.aestasit.markdown.slidedown;
 
-import static org.parboiled.common.Preconditions.checkArgNotNull;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +47,10 @@ import org.pegdown.ast.VerbatimNode;
 import org.pegdown.ast.Visitor;
 import org.pegdown.ast.WikiLinkNode;
 
-public class ToHtmlSlides implements Visitor {
+import com.aestasit.markdown.BaseVisitor;
+import com.google.common.base.Preconditions;
+
+public class ToXmlSlides extends BaseVisitor implements Visitor {
 
   protected Printer                          printer       = new Printer();
   protected final Map<String, ReferenceNode> references    = new HashMap<String, ReferenceNode>();
@@ -60,22 +61,24 @@ public class ToHtmlSlides implements Visitor {
   protected int                              currentTableColumn;
   protected boolean                          inTableHeader;
 
-  public ToHtmlSlides(LinkRenderer linkRenderer) {
+  public ToXmlSlides(LinkRenderer linkRenderer) {
     this.linkRenderer = linkRenderer;
   }
 
-  public String toHtml(RootNode astRoot) {
-    checkArgNotNull(astRoot, "astRoot");
+  public String toXml(RootNode astRoot) {
+    Preconditions.checkNotNull(astRoot, "astRoot");
     astRoot.accept(this);
     return printer.getString();
   }
 
   public void visit(RootNode node) {
+
     for (ReferenceNode refNode : node.getReferences()) {
       visitChildren(refNode);
       references.put(normalize(printer.getString()), refNode);
       printer.clear();
     }
+
     for (AbbreviationNode abbrNode : node.getAbbreviations()) {
       visitChildren(abbrNode);
       String abbr = printer.getString();
@@ -85,7 +88,11 @@ public class ToHtmlSlides implements Visitor {
       abbreviations.put(abbr, expansion);
       printer.clear();
     }
+    
+    printer.print("<slides>").indent(+2);
     visitChildren(node);
+    printer.indent(-2).println().print("</slides>");
+    
   }
 
   public void visit(AbbreviationNode node) {
@@ -133,6 +140,7 @@ public class ToHtmlSlides implements Visitor {
   }
 
   public void visit(HeaderNode node) {
+    printer.println();
     printTag(node, "h" + node.getLevel());
   }
 
@@ -348,13 +356,9 @@ public class ToHtmlSlides implements Visitor {
     throw new RuntimeException("Not implemented");
   }
 
-  // helpers
-
-  protected void visitChildren(SuperNode node) {
-    for (Node child : node.getChildren()) {
-      child.accept(this);
-    }
-  }
+  // //////////////////////////////////////////////////////////////////////////////////////////////
+  // HELPERS
+  // //////////////////////////////////////////////////////////////////////////////////////////////
 
   protected void printTag(TextNode node, String tag) {
     printer.print('<').print(tag).print('>');
@@ -470,4 +474,5 @@ public class ToHtmlSlides implements Visitor {
       printer.print(string);
     }
   }
+
 }

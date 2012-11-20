@@ -54,226 +54,189 @@ public class TextPrinter extends BaseVisitor implements Visitor {
     this.printer = printer;
   }
 
-  @Override
   public void visit(AutoLinkNode node) {
     logNode(node);
     printer.print(node.getText());
     visitChildren(node);
   }
 
-  @Override
   public void visit(TextNode node) {
     logNode(node);
     printer.print(node.getText());
     visitChildren(node);
   }
 
-  @Override
   public void visit(SpecialTextNode node) {
     logNode(node);
     printer.print(node.getText());
     visitChildren(node);
   }
 
-  @Override
   public void visit(AbbreviationNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(BlockQuoteNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(BulletListNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(CodeNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(DefinitionListNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(DefinitionNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(DefinitionTermNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(EmphNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(ExpImageNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(ExpLinkNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(HeaderNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(HtmlBlockNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(InlineHtmlNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(ListItemNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(MailLinkNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(OrderedListNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(ParaNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(QuotedNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(ReferenceNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(RefImageNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(RefLinkNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(RootNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(SimpleNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(StrongNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(TableBodyNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(TableCellNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(TableColumnNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(TableHeaderNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(TableNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(TableRowNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(VerbatimNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(WikiLinkNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(SuperNode node) {
     logNode(node);
     visitChildren(node);
   }
 
-  @Override
   public void visit(Node node) {
     logNode(node);
     visitChildren(node);
