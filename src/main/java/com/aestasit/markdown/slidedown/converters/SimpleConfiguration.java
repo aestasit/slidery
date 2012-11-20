@@ -58,7 +58,9 @@ public class SimpleConfiguration implements Configuration {
   }
 
   public void validate() {
-    Preconditions.checkState(inputFiles.size() == 0, "No input files given!");
+    Preconditions.checkState(inputFiles.size() > 0, "No input files given!");
+    Preconditions.checkState(outputFile != null, "Output file is not specified!");
+    Preconditions.checkState(templateFile != null && templateFile.exists(), "Template file does not exist!");
   }
 
   public Collection<File> getInputFiles() {

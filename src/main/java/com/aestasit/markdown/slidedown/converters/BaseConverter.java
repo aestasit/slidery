@@ -23,6 +23,7 @@ public abstract class BaseConverter implements Converter {
   @Override
   public void render(Configuration config) throws IOException {
     beforeStart(config);
+    config.validate();
     copyStaticFiles(config.getStaticFiles(), createOutputDirectory(config));
     createOutput(config, joinInputFiles(config));
   }

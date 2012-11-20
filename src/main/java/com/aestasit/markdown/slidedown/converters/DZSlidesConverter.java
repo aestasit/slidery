@@ -10,7 +10,7 @@ public class DZSlidesConverter extends TextTemplateConverter {
 
   @Override
   protected void beforeStart(Configuration config) {
-    config.templateFile(classpath("dzslides/presentation.html"));
+    config.templateFile(classpath("dzslides/template.html"));
   }
 
   @Override
