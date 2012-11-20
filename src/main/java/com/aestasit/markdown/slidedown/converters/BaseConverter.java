@@ -18,9 +18,10 @@ import org.jsoup.nodes.Document;
 
 import com.aestasit.markdown.slidedown.Slidedown;
 
-public abstract class BaseConverter {
+public abstract class BaseConverter implements Converter {
 
-  void render(Configuration config) throws IOException {
+  @Override
+  public void render(Configuration config) throws IOException {
     beforeStart(config);
     copyStaticFiles(config.getStaticFiles(), createOutputDirectory(config));
     createOutput(config, joinInputFiles(config));

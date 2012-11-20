@@ -16,4 +16,22 @@ public interface Configuration {
 
   Charset getInputEncoding();
 
+  Configuration inputFile(File inputFile);
+
+  Configuration staticFile(File staticFile);
+
+  Configuration outputFile(File outputFile);
+
+  Configuration encoding(String encoding);
+
+  Configuration encoding(Charset encoding);
+
+  void validate() throws IllegalStateException;
+
+  Configuration templateFile(File templateFile);
+
+  String getProperty(String name);
+
+  Configuration property(String name, String value);
+
 }

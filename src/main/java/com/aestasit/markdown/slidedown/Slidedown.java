@@ -21,27 +21,27 @@ public final class Slidedown {
 
   public static String toSlides(RootNode node) {
     Preconditions.checkNotNull(node, "astRoot");
-    return getConverter().toXml(node);
+    return getConverter().toHtml(node);
   }
 
   public static String toSlides(InputStream stream) throws IOException {
     Preconditions.checkNotNull(stream, "inputStream");
-    return getConverter().toXml(Markdown.toAst(stream, DEFAULT_PEGDOWN_OPTIONS));
+    return getConverter().toHtml(Markdown.toAst(stream, DEFAULT_PEGDOWN_OPTIONS));
   }
 
   public static String toSlides(String text) throws IOException {
     Preconditions.checkNotNull(text, "text");
-    return getConverter().toXml(Markdown.toAst(new ByteArrayInputStream(text.getBytes()), DEFAULT_PEGDOWN_OPTIONS));
+    return getConverter().toHtml(Markdown.toAst(new ByteArrayInputStream(text.getBytes()), DEFAULT_PEGDOWN_OPTIONS));
   }
 
   public static String toSlides(File file) throws IOException {
     Preconditions.checkNotNull(file, "file");
-    return getConverter().toXml(Markdown.toAst(file, DEFAULT_PEGDOWN_OPTIONS));
+    return getConverter().toHtml(Markdown.toAst(file, DEFAULT_PEGDOWN_OPTIONS));
   }
 
   public static String toSlides(URL url) throws IOException {
     Preconditions.checkNotNull(url, "url");
-    return getConverter().toXml(Markdown.toAst(url.openStream(), DEFAULT_PEGDOWN_OPTIONS));
+    return getConverter().toHtml(Markdown.toAst(url.openStream(), DEFAULT_PEGDOWN_OPTIONS));
   }
 
   public static Document toDom(String text) throws IOException {
@@ -64,8 +64,8 @@ public final class Slidedown {
     return Jsoup.parse(toSlides(node));
   }
 
-  private static ToXmlSlides getConverter() {
-    return new ToXmlSlides(new LinkRenderer());
+  private static ToHtmlSlides getConverter() {
+    return new ToHtmlSlides(new LinkRenderer());
   }
 
 }

@@ -14,16 +14,26 @@ import org.jsoup.nodes.Document;
 public class TextTemplateConverter extends BaseConverter {
 
   @Override
-  protected void convert(Document slidesDocument, Writer output, Configuration config) throws IOException {
+  final protected void convert(Document slidesDocument, Writer output, Configuration config) throws IOException {
     String templateText = FileUtils.readFileToString(config.getTemplateFile(), config.getInputEncoding());
-    HashMap<String, Object> parameters = createBinding(slidesDocument);    
+    transformDocument(slidesDocument);
+    HashMap<String, Object> parameters = createBinding(slidesDocument);
     compileTemplate(templateText).make(parameters).writeTo(output);
   }
 
-  private HashMap<String, Object> createBinding(Document slides) {
+  private HashMap<String, Object> createBinding(Document slidesDocument) {
     HashMap<String, Object> parameters = new HashMap<String, Object>();
-    parameters.put("slides", slides.getElementsByTag("slide"));
+    parameters.put("document", slidesDocument);
+    expandBinding(parameters, slidesDocument);
     return parameters;
+  }
+
+  protected void expandBinding(final HashMap<String, Object> binding, Document slidesDocument) {
+    // Override in subclasses.
+  }
+
+  protected void transformDocument(final Document slidesDocument) {
+    // Override in subclasses.
   }
 
   private Template compileTemplate(String templateText) throws IOException {

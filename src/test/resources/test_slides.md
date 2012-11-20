@@ -27,7 +27,7 @@
 
 # Training
 
-  ![Training Site](../images/AESTAS_SITE_TRAINING.png)
+  ![Training Site](AESTAS_SITE_TRAINING.png)
 
 # Training tracks
 
@@ -38,11 +38,11 @@
 
 # "Better developer" track
 
-  ![Better Developer Track](../images/BETTER_DEVELOPER_TRACK.png)
+  ![Better Developer Track](BETTER_DEVELOPER_TRACK.png)
 
 # Training overview
 
-  ![Training Overview](../images/AESTAS_TRAINING.png)
+  ![Training Overview](AESTAS_TRAINING.png)
 
 # What's in this training?
 

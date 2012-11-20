@@ -11,3 +11,8 @@
 ### Slidedown features:
 
  * support slide layout detection
+ * support titleless slides
+ * add base pdf converter
+ * add base dzslides converter
+ * add base reveal converter
+ * add base impress converter
