@@ -12,7 +12,8 @@ public class SlidedownTest extends BaseTest {
   @Test
   public void testLoadingMethods() throws IOException {
     InputStream inputStream = getTestData("test_slides.md");
-    Slidedown.toSlides(inputStream);
+    String slides = Slidedown.toSlides(inputStream);
+    System.out.println(slides);
     // TODO: extend method coverage    
   }
 

@@ -17,6 +17,9 @@ public class DZSlidesConverter extends TextTemplateConverter {
   protected void expandBinding(HashMap<String, Object> binding, Document slidesDocument) {
     binding.put("backgroundColor", "black");
     binding.put("webFont", "Oswald");
+    binding.put("body", slidesDocument.getElementsByTag("body").first());
+    binding.put("title", slidesDocument.getElementsByTag("section").first().getElementsByTag("header").first().text());
+    binding.put("slides", slidesDocument.getElementsByTag("section"));
   }
 
   @Override

@@ -3,14 +3,10 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
+apply from: 'repos.gradle'
 
 version = '0.1-SNAPSHOT'
 group = 'com.aestasit.markdown'
-
-
-repositories {
-  mavenCentral()   
-}
 
 
 dependencies {
@@ -44,46 +40,4 @@ artifacts {
   archives jar
   archives javadocJar
   archives sourcesJar
-}
-
-
-uploadArchives {
-  repositories {
-    mavenDeployer {
-
-      repository(url: repositoryUrl) {
-        authentication(userName: repositoryUsername, password: repositoryPassword)
-      }
-
-      pom.project {
-
-        name 'Slidedown'
-        packaging 'jar'
-        description 'Slidedown is a Java library to support creation of presentation slides written in Markdown.'
-        url 'https://github.com/aestasit/slidedown'
-    
-        scm {
-          url 'scm:git@github.com:aestasit/slidedown'
-          connection 'scm:git@github.com:aestasit/slidedown'
-          developerConnection 'scm:git@github.com:aestasit/slidedown'
-        }
-    
-        licenses {
-          license {
-            name 'The Apache Software License, Version 2.0'
-            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            distribution 'repo'
-          }
-        }
-    
-        developers {
-          developer {
-            id 'aadamovich'
-            name 'Andrey Adamovich'
-          }
-        }
-
-      }
-    }
-  }
 }

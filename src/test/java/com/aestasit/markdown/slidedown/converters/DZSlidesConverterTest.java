@@ -14,16 +14,16 @@ public class DZSlidesConverterTest {
 
     // Configure converter.
     Configuration config = new SimpleConfiguration();
-    config.inputFile(classpath("test_slides.md"));
-    config.outputFile(file("tmp/presentation.html"));
-    config.staticFile(classpath("AESTAS_SITE_TRAINING.png"));
-    config.staticFile(classpath("BETTER_DEVELOPER_TRACK.png"));
-    config.staticFile(classpath("AESTAS_TRAINING.png"));
-    config.encoding("UTF-8");
-    
+    config.inputFile(classpath("test_slides.md"))
+        .outputFile(file("tmp/presentation.html"))
+        .staticFile(classpath("AESTAS_SITE_TRAINING.png"))
+        .staticFile(classpath("BETTER_DEVELOPER_TRACK.png"))
+        .staticFile(classpath("AESTAS_TRAINING.png"))
+        .encoding("UTF-8");
+
     // Render.
     new DZSlidesConverter().render(config);
-    
+
   }
 
 }
