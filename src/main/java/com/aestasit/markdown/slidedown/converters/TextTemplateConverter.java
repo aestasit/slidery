@@ -1,5 +1,7 @@
 package com.aestasit.markdown.slidedown.converters;
 
+import static org.apache.commons.io.FileUtils.readFileToString;
+
 import groovy.text.SimpleTemplateEngine;
 import groovy.text.Template;
 
@@ -7,7 +9,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 
-import org.apache.commons.io.FileUtils;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,7 +17,7 @@ public class TextTemplateConverter extends BaseConverter {
 
   @Override
   final protected void convert(Document slidesDocument, Writer output, Configuration config) throws IOException {
-    String templateText = FileUtils.readFileToString(config.getTemplateFile(), config.getInputEncoding());
+    String templateText = readFileToString(config.getTemplateFile(), config.getInputEncoding().name());
     transformDocument(slidesDocument);
     HashMap<String, Object> parameters = createBinding(slidesDocument, config);
     compileTemplate(templateText).make(parameters).writeTo(output);
@@ -27,7 +28,7 @@ public class TextTemplateConverter extends BaseConverter {
     binding.put("document", slidesDocument);
     binding.put("body", slidesDocument.getElementsByTag("body").first());
     binding.put("slides", getSlideCollection(slidesDocument));
-    binding.put("title", getFirstSlideTitle(slidesDocument));    
+    binding.put("title", getFirstSlideTitle(slidesDocument));
     expandBinding(binding, slidesDocument, config);
     return binding;
   }
@@ -44,7 +45,7 @@ public class TextTemplateConverter extends BaseConverter {
     return slidesDocument.getElementsByTag("section");
   }
 
-  private String getFirstSlideTitle(Document slidesDocument) {    
+  private String getFirstSlideTitle(Document slidesDocument) {
     Elements slideCollection = getSlideCollection(slidesDocument);
     if (slideCollection != null && slideCollection.size() > 0) {
       Elements header = slideCollection.first().getElementsByTag("header");

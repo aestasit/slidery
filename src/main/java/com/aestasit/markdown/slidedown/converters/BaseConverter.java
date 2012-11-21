@@ -1,6 +1,9 @@
 package com.aestasit.markdown.slidedown.converters;
 
+import static com.aestasit.markdown.slidedown.Slidedown.toDom;
 import static org.apache.commons.io.FileUtils.copyFileToDirectory;
+import static org.apache.commons.io.FileUtils.deleteDirectory;
+import static org.apache.commons.io.FileUtils.deleteQuietly;
 import static org.apache.commons.io.FileUtils.forceMkdir;
 import static org.apache.commons.io.FileUtils.openOutputStream;
 import static org.apache.commons.io.FileUtils.readLines;
@@ -12,18 +15,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.jsoup.nodes.Document;
 
-import com.aestasit.markdown.slidedown.Slidedown;
 import com.google.common.collect.Multimap;
 
 /**
  * @author Andrey Adamovich
- *
+ * 
  */
 public abstract class BaseConverter implements Converter {
+
 
   @Override
   public void render(Configuration config) throws IOException {
@@ -33,12 +38,15 @@ public abstract class BaseConverter implements Converter {
     createOutput(config, joinInputFiles(config));
   }
 
+  @SuppressWarnings("unchecked")
   private File joinInputFiles(Configuration config) throws IOException {
     File joinedFile = File.createTempFile("slidedown", "joined");
     joinedFile.deleteOnExit();
+    List<String> lines = new ArrayList<String>();
     for (File inputFile : config.getInputFiles()) {
-      writeLines(joinedFile, readLines(inputFile, config.getInputEncoding()), true);
+      lines.addAll(readLines(inputFile, config.getInputEncoding().name()));
     }
+    writeLines(joinedFile, lines);
     return joinedFile;
   }
 
@@ -50,7 +58,7 @@ public abstract class BaseConverter implements Converter {
 
   private void copyStaticFiles(Multimap<String, File> staticFiles, File outputDir) throws IOException {
     for (Entry<String, File> templateFile : staticFiles.entries()) {
-      String relativePath = templateFile.getKey();      
+      String relativePath = templateFile.getKey();
       File destDir = new File(outputDir, relativePath);
       forceMkdir(destDir);
       copyFileToDirectory(templateFile.getValue(), destDir);
@@ -62,12 +70,30 @@ public abstract class BaseConverter implements Converter {
     FileOutputStream outputStream = null;
     try {
       outputStream = openOutputStream(config.getOutputFile());
-      convert(Slidedown.toDom(joinedFile), new OutputStreamWriter(outputStream), config);
+      convert(toDom(joinedFile), new OutputStreamWriter(outputStream), config);
     } finally {
       closeQuietly(outputStream);
     }
     afterConversion(joinedFile, config);
-    joinedFile.delete();
+    deleteTemporaryFiles(joinedFile, config);
+
+  }
+
+  private void deleteTemporaryFiles(File joinedFile, Configuration config) {
+    for (File staticFile : config.getStaticFiles().values()) {
+      deleteTemporaryFile(staticFile);
+    }
+    deleteQuietly(joinedFile);
+  }
+
+  private void deleteTemporaryFile(File staticFile) {
+    File systemTempDir = new File(System.getProperty("java.io.tmpdir"));
+    if (staticFile.getAbsolutePath().contains(systemTempDir.getAbsolutePath())) {
+      try {
+        deleteDirectory(staticFile.getParentFile());
+      } catch (IOException e) {
+      }
+    }
   }
 
   protected void beforeStart(Configuration config) {
