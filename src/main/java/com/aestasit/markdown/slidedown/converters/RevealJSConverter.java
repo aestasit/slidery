@@ -18,7 +18,7 @@ public class RevealJSConverter extends TextTemplateConverter {
     config.staticFile("css", classpath("reveal.js/css/reveal.css"));
     config.staticFile("css/print", classpath("reveal.js/css/print/paper.css"));
     config.staticFile("css/print", classpath("reveal.js/css/print/pdf.css"));    
-    config.staticFile("css/theme", classpath("reveal.js/css/theme/default.css"));
+    config.staticFile("css/theme", classpath("reveal.js/css/theme/simple.css"));
     config.staticFile("lib/css", classpath("reveal.js/lib/css/zenburn.css"));
     
     // JavaScript
