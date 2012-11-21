@@ -17,13 +17,13 @@ public final class Resources {
 
   public static File file(String filePath) {
     Preconditions.checkNotNull(filePath, "File path is not specified!");
-    Preconditions.checkArgument(StringUtils.isEmpty(filePath), "File path is not specified!");
+    Preconditions.checkArgument(!StringUtils.isEmpty(filePath), "File path is not specified!");
     return new File(filePath);
   }
 
   public static File classpath(String filePath) {
     Preconditions.checkNotNull(filePath, "File path is not specified!");
-    Preconditions.checkArgument(StringUtils.isEmpty(filePath), "File path is not specified!");
+    Preconditions.checkArgument(!StringUtils.isEmpty(filePath), "File path is not specified!");
     File tempFile = tempFile();
     copy(classLoader().getResourceAsStream(filePath), silentOpen(tempFile));
     return tempFile;
