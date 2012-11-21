@@ -13,6 +13,8 @@
  * support slide layout detection
  * support titleless slides
  * add base pdf converter
- * add base dzslides converter
- * add base reveal converter
  * add base impress converter
+ * create test suite with different slide layouts
+ * create gradle plugin
+ * add support for syntax highlighting with jhighligter
+ * add support for pdf conversion with itext

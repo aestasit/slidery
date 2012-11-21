@@ -42,7 +42,9 @@ public class RevealJSConverter extends TextTemplateConverter {
     for (Element list : slidesDocument.select("aside")) {
       list.addClass("notes");
     }
-
+    for (Element list : slidesDocument.select("div li")) {
+      list.addClass("fragment").addClass("roll-in");
+    }
   }
 
 }
