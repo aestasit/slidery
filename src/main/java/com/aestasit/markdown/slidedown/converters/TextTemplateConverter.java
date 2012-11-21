@@ -44,8 +44,15 @@ public class TextTemplateConverter extends BaseConverter {
     return slidesDocument.getElementsByTag("section");
   }
 
-  private String getFirstSlideTitle(Document slidesDocument) {
-    return getSlideCollection(slidesDocument).first().getElementsByTag("header").first().text();
+  private String getFirstSlideTitle(Document slidesDocument) {    
+    Elements slideCollection = getSlideCollection(slidesDocument);
+    if (slideCollection != null && slideCollection.size() > 0) {
+      Elements header = slideCollection.first().getElementsByTag("header");
+      if (header != null && header.size() > 0) {
+        return header.first().text();
+      }
+    }
+    return "";
   }
 
   private Template compileTemplate(String templateText) throws IOException {

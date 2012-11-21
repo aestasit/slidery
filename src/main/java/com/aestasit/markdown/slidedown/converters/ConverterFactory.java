@@ -29,7 +29,7 @@ public final class ConverterFactory {
   private static String getConverterClassName(String id) {
     try {
       Properties properties = new Properties();
-      properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(id + ".properties"));
+      properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("META-INF/slidedown-converters/" + id + ".properties"));
       String converterClassName = properties.getProperty("converter-class");
       return converterClassName;
     } catch (IOException e) {

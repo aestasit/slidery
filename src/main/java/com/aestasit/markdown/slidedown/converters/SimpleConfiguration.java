@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 import com.google.common.base.Preconditions;
@@ -15,7 +15,7 @@ import com.google.common.collect.Multimaps;
 
 public class SimpleConfiguration implements Configuration {
 
-  private Collection<File>       inputFiles    = new HashSet<File>();
+  private Collection<File>       inputFiles    = new LinkedHashSet<File>();
   private Charset                inputEncoding = Charset.forName("UTF-8");
   private Multimap<String, File> staticFiles   = HashMultimap.create();
   private Map<String, String>    properties    = new HashMap<String, String>();
