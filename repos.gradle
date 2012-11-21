@@ -7,6 +7,8 @@ uploadArchives {
   repositories {
     mavenDeployer {
 
+      name = "Sonatype OSS Snapshots"
+
       repository(url: repositoryUrl) {
         authentication(userName: repositoryUsername, password: repositoryPassword)
       }

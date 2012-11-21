@@ -18,6 +18,7 @@ dependencies {
   compile 'org.jsoup:jsoup:1.6.1'
   compile 'com.google.guava:guava:13.0.1'
   compile 'org.codehaus.groovy:groovy-templates:2.0.5'
+  compile 'org.xhtmlrenderer:core-renderer:R8'
   
   testCompile 'junit:junit:4.11'
   testRuntime 'ch.qos.logback:logback-core:1.0.7'

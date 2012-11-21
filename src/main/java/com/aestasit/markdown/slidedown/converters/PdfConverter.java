@@ -1,5 +1,50 @@
 package com.aestasit.markdown.slidedown.converters;
 
-public class PdfConverter {
+import static com.aestasit.markdown.Resources.classpath;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+
+import org.apache.commons.io.IOUtils;
+import org.jsoup.nodes.Document;
+import org.xhtmlrenderer.pdf.ITextRenderer;
+
+import com.lowagie.text.DocumentException;
+
+public class PdfConverter extends TextTemplateConverter {
+
+  @Override
+  protected void beforeStart(Configuration config) {
+    config.templateFile(classpath("pdf/template.html"));
+  }
+
+  @Override
+  protected void expandBinding(HashMap<String, Object> binding, Document slidesDocument, Configuration config) {
+  }
+
+  @Override
+  protected void transformDocument(Document slidesDocument) {
+  }
+
+  @Override
+  protected void afterConversion(File inputFile, Configuration config) {
+    try {
+      ITextRenderer renderer = new ITextRenderer();
+      renderer.setDocument(config.getOutputFile());
+      renderer.layout();
+      FileOutputStream outputStream = new FileOutputStream(config.getOutputFile());
+      try {
+        renderer.createPDF(outputStream);
+      } catch (DocumentException e) {
+        throw new RuntimeException(e);
+      } finally {
+        IOUtils.closeQuietly(outputStream); 
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
 }
