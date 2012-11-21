@@ -12,12 +12,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.Collection;
+import java.util.Map.Entry;
 
 import org.jsoup.nodes.Document;
 
 import com.aestasit.markdown.slidedown.Slidedown;
+import com.google.common.collect.Multimap;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public abstract class BaseConverter implements Converter {
 
   @Override
@@ -43,9 +48,12 @@ public abstract class BaseConverter implements Converter {
     return parentDir;
   }
 
-  private void copyStaticFiles(Collection<File> staticFiles, File outputDir) throws IOException {
-    for (File templateFile : staticFiles) {
-      copyFileToDirectory(templateFile, outputDir);
+  private void copyStaticFiles(Multimap<String, File> staticFiles, File outputDir) throws IOException {
+    for (Entry<String, File> templateFile : staticFiles.entries()) {
+      String relativePath = templateFile.getKey();      
+      File destDir = new File(outputDir, relativePath);
+      forceMkdir(destDir);
+      copyFileToDirectory(templateFile.getValue(), destDir);
     }
   }
 

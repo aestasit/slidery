@@ -9,15 +9,18 @@ import java.util.HashSet;
 import java.util.Map;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 
 public class SimpleConfiguration implements Configuration {
 
-  private Collection<File>    inputFiles    = new HashSet<File>();
-  private Charset             inputEncoding = Charset.forName("UTF-8");
-  private Collection<File>    staticFiles   = new HashSet<File>();
-  private Map<String, String> properties    = new HashMap<String, String>();
-  private File                outputFile;
-  private File                templateFile;
+  private Collection<File>       inputFiles    = new HashSet<File>();
+  private Charset                inputEncoding = Charset.forName("UTF-8");
+  private Multimap<String, File> staticFiles   = HashMultimap.create();
+  private Map<String, String>    properties    = new HashMap<String, String>();
+  private File                   outputFile;
+  private File                   templateFile;
 
   public SimpleConfiguration inputFile(File inputFile) {
     inputFiles.add(inputFile);
@@ -25,7 +28,12 @@ public class SimpleConfiguration implements Configuration {
   }
 
   public SimpleConfiguration staticFile(File staticFile) {
-    staticFiles.add(staticFile);
+    staticFiles.put(".", staticFile);
+    return this;
+  }
+
+  public SimpleConfiguration staticFile(String relativePath, File staticFile) {
+    staticFiles.put(relativePath, staticFile);
     return this;
   }
 
@@ -67,8 +75,8 @@ public class SimpleConfiguration implements Configuration {
     return Collections.unmodifiableCollection(inputFiles);
   }
 
-  public Collection<File> getStaticFiles() {
-    return Collections.unmodifiableCollection(staticFiles);
+  public Multimap<String, File> getStaticFiles() {
+    return Multimaps.unmodifiableMultimap(staticFiles);
   }
 
   public File getTemplateFile() {
@@ -86,5 +94,5 @@ public class SimpleConfiguration implements Configuration {
   public String getProperty(String name) {
     return properties.get(name);
   }
-  
+
 }

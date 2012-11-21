@@ -4,14 +4,16 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Collection;
 
+import com.google.common.collect.Multimap;
+
 public interface Configuration {
 
   Collection<File> getInputFiles();
 
-  Collection<File> getStaticFiles();
+  Multimap<String, File> getStaticFiles();
 
   File getTemplateFile();
-  
+
   File getOutputFile();
 
   Charset getInputEncoding();
@@ -19,6 +21,8 @@ public interface Configuration {
   Configuration inputFile(File inputFile);
 
   Configuration staticFile(File staticFile);
+
+  Configuration staticFile(String relativePath, File staticFile);
 
   Configuration outputFile(File outputFile);
 
