@@ -4,6 +4,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public class ConverterFactoryTest {
 
   @Rule

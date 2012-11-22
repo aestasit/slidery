@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public class DZSlidesConverterTest extends BaseConverterTest {
 
   @Test

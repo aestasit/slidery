@@ -7,6 +7,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.pegdown.ast.RootNode;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public class MarkdownTest extends BaseTest {
 
   @Test

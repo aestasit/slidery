@@ -12,12 +12,16 @@ import org.pegdown.ast.RootNode;
 import com.aestasit.markdown.BaseTest;
 import com.aestasit.markdown.Markdown;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public class TextExtractorTest extends BaseTest {
 
   @Test
   public void testExtraction() throws IOException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
-    RootNode inputAst = Markdown.toAst(testData("01_simple_slides.md"));
+    RootNode inputAst = Markdown.toAst(allTestData());
     new TextExtractor(new PrintStream(data)).visit(inputAst);
     String text = new String(data.toByteArray());
     Assert.assertFalse(StringUtils.isEmpty(text.trim()));

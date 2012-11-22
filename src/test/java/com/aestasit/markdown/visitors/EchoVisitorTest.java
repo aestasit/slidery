@@ -11,12 +11,16 @@ import org.pegdown.ast.RootNode;
 import com.aestasit.markdown.BaseTest;
 import com.aestasit.markdown.Markdown;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public class EchoVisitorTest extends BaseTest {
 
   @Test
   public void testEcho() throws IOException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
-    RootNode inputAst = Markdown.toAst(testData("01_simple_slides.md"));
+    RootNode inputAst = Markdown.toAst(allTestData());
     new EchoVisitor(new PrintStream(data)).visit(inputAst);
     RootNode echoedAst = Markdown.toAst(new String(data.toByteArray()));
     Assert.assertNotNull(echoedAst);

@@ -10,6 +10,10 @@ import org.junit.Before;
 
 import com.aestasit.markdown.BaseTest;
 
+/**
+ * @author Andrey Adamovich
+ *
+ */
 public class BaseConverterTest extends BaseTest {
 
   protected Configuration createConfiguration() {
