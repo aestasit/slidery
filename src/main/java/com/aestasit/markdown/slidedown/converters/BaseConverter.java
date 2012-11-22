@@ -24,13 +24,30 @@ import org.jsoup.nodes.Document;
 import com.google.common.collect.Multimap;
 
 /**
+ * <p>This is an abstract converter class that implements the following flow:</p>
+ * 
+ *   <ul>
+ *     <li>configuration validation</li>
+ *     <li>mark-down input file joining</li>
+ *     <li>static file coping</li>
+ *     <li>output directory creation</li> 
+ *     <li>clean up after conversion</li>
+ *   </ul>
+ * 
+ * <p>Actual conversion is delegated to the subclasses which need to override abstract <code>convert</code> method. 
+ *    It also provides a number of hook methods for the subclasses to extend default behavior:</p> 
+ * 
+ *   <ul>
+ *    <li><code>beforeStart</code></li>
+ *    <li><code>beforeConversion</code></li>
+ *    <li><code>afterConversion</code></li>
+ *   </ul>
+ *   
  * @author Andrey Adamovich
  * 
  */
 public abstract class BaseConverter implements Converter {
 
-
-  @Override
   public void render(Configuration config) throws IOException {
     beforeStart(config);
     config.validate();
@@ -76,7 +93,6 @@ public abstract class BaseConverter implements Converter {
     }
     afterConversion(joinedFile, config);
     deleteTemporaryFiles(joinedFile, config);
-
   }
 
   private void deleteTemporaryFiles(File joinedFile, Configuration config) {
