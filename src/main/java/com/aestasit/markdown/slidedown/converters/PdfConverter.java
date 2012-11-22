@@ -14,7 +14,9 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.lowagie.text.DocumentException;
 
 /**
- * TODO: finish implemetation
+ * Presentation converter that is based on <a
+ * href="http://itextpdf.com/">iText</a> library capable of converting <i>HTML</i> to
+ * <i>PDF</i>.
  * 
  * @author Andrey Adamovich
  * 
@@ -24,7 +26,12 @@ public class PdfConverter extends TextTemplateConverter {
   public static final String CONVERTER_ID = "pdf";
 
   protected void beforeStart(Configuration config) {
-    config.templateFile(classpath("pdf/template.html"));
+    config
+        .templateFile(classpath("pdf/template.html"))
+        .staticFile("style", classpath("pdf/style/base.css"))
+        .staticFile("style", classpath("pdf/style/code.css"))
+        .staticFile("style", classpath("pdf/style/pdf.css"))
+        .staticFile("style", classpath("pdf/style/reset.css"));
   }
 
   protected void afterConversion(File inputFile, Configuration config) {

@@ -1,8 +1,24 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-  <meta charset="utf-8"/>
-  <title>${title}</title>
-</head>
-${document.outerHtml()}
+  <head> 
+    <meta charset="utf-8" /> 
+    <link rel="stylesheet" href="style/reset.css" /> 
+    <link rel="stylesheet" href="style/base.css" /> 
+    <link rel="stylesheet" href="style/code.css" />  
+    <link rel="stylesheet" href="style/pdf.css" /> 
+  </head> 
+  <body>
+  
+<% slides.each { slide -> %>
+  <section class="slide">
+     <div class="inner">
+       <% def slideContent = slide.select("div")?.first()?.html() %>
+       <% def slideTitle = slide.select("header")?.first()?.text() %>     
+       <h1><%= slideTitle %></h1>
+       <%= slideContent %>
+     </div>   
+  </section>
+<% } %>
+   
+  </body>
 </html>

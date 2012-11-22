@@ -1,0 +1,88 @@
+body {
+  font-family: 'Lato', Arial, serif;
+  font-size: 26px !important;
+}
+section.slide {
+  color: #333;
+  line-height: 1.25 !important;
+}
+section.slide ul ul {
+  margin-bottom: 0;
+}
+section.slide .inner {
+  overflow: hidden;
+  width: 924px;
+  height: 708px;
+  padding: 30px 50px;
+  background: white url(logo.png) 814px 713px no-repeat;
+}
+section.slide .title-slide-content {
+  padding-top: 244px;
+  text-align: center;
+  width: 100%;
+}
+section.slide h1,
+section.slide h2,
+section.slide h3,
+section.slide h4,
+section.slide h5,
+section.slide h6 {
+  color: #007042;
+}
+section.slide h1, section.slide h2 {
+  margin: 0;
+  padding: 0;
+}
+section.slide h2 {
+  padding-bottom: .1em;
+  margin-bottom: .5em;
+  font-size: 64px;
+}
+section.slide aside.notes {
+  display: none;
+}
+section.slide pre {
+  border: none;
+  padding: 0;
+}
+section.slide code {
+  font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-size: 90%;
+  line-height: 1.4;
+}
+section.slide pre.code {
+  background-color: #FFFAE0;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+  padding: 8px;
+}
+section.slide blockquote {
+  font-family: "Hoefler Text", Constantia, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  border-left: 3px solid #CCC;
+  padding-left: 1em;
+}
+section.slide blockquote > :first-child:before {
+  content: "“";
+}
+section.slide blockquote > :last-child:after {
+  content: "”";
+}
+section.slide h1 {
+  font-size: 114px;
+}
+section.slide dl {
+  margin-bottom: 1em;
+}
+section.slide dl > :first-child {
+  padding-top: 0;
+}
+section.slide dt {
+  font-weight: bold;
+  padding-top: 0.25em;
+}
+section.slide dd {
+  padding-bottom: 0.25em;
+}
+section.slide dd:before {
+  content: "\221f\0000a0";
+}
+
