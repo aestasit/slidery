@@ -2,13 +2,16 @@ package com.aestasit.markdown.slidedown.converters;
 
 import static com.aestasit.markdown.Resources.classpath;
 
-import java.util.HashMap;
-
-import org.jsoup.nodes.Document;
-
+/**
+ * Presentation converter that is based on <a href="http://imakewebthings.com/deck.js/">deck.js</a> framework.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class DeckJSConverter extends TextTemplateConverter {
 
-  @Override
+  public static final String CONVERTER_ID = "deck-js";
+
   protected void beforeStart(Configuration config) {
 
     config.templateFile(classpath("deck.js/boilerplate.html"));
@@ -35,14 +38,6 @@ public class DeckJSConverter extends TextTemplateConverter {
     String basePath = "deck.js/extensions/" + extension + "/deck." + extension;
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
     config.staticFile("extensions/" + extension, classpath(basePath + ".js"));
-  }
-
-  @Override
-  protected void expandBinding(HashMap<String, Object> binding, Document slidesDocument, Configuration config) {
-  }
-
-  @Override
-  protected void transformDocument(Document slidesDocument) {
   }
 
 }

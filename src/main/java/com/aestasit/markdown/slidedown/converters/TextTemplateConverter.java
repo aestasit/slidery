@@ -13,9 +13,21 @@ import org.codehaus.groovy.control.CompilationFailedException;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class TextTemplateConverter extends BaseConverter {
+/**
+ * This is an extension to {@link BaseConverter} that assumes
+ * 
+ * <p>It also provides a number of hook methods for the subclasses to extend default behavior:</p> 
+ * 
+ *   <ul>
+ *    <li><code>expandBinding</code></li>
+ *    <li><code>transformDocument</code></li>
+ *   </ul>
+ *   
+ * @author Andrey Adamovich
+ *
+ */
+public abstract class TextTemplateConverter extends BaseConverter {
 
-  @Override
   final protected void convert(Document slidesDocument, Writer output, Configuration config) throws IOException {
     String templateText = readFileToString(config.getTemplateFile(), config.getInputEncoding().name());
     transformDocument(slidesDocument);
@@ -41,11 +53,11 @@ public class TextTemplateConverter extends BaseConverter {
     // Override in subclasses.
   }
 
-  private Elements getSlideCollection(Document slidesDocument) {
+  protected Elements getSlideCollection(Document slidesDocument) {
     return slidesDocument.getElementsByTag("section");
   }
 
-  private String getFirstSlideTitle(Document slidesDocument) {
+  protected String getFirstSlideTitle(Document slidesDocument) {
     Elements slideCollection = getSlideCollection(slidesDocument);
     if (slideCollection != null && slideCollection.size() > 0) {
       Elements header = slideCollection.first().getElementsByTag("header");
@@ -56,7 +68,7 @@ public class TextTemplateConverter extends BaseConverter {
     return "";
   }
 
-  private Template compileTemplate(String templateText) throws IOException {
+  protected Template compileTemplate(String templateText) throws IOException {
     SimpleTemplateEngine engine = new SimpleTemplateEngine();
     Template template = null;
     try {

@@ -13,7 +13,7 @@ public class ImpressJSConverterTest extends BaseConverterTest {
 
   @Test
   public void testFactoryConversion() throws IOException {
-    ConverterFactory.createConverter("impress-js-base").render(createConfiguration());
+    ConverterFactory.createConverter(ImpressJSConverter.CONVERTER_ID).render(createConfiguration());
   }
 
 }

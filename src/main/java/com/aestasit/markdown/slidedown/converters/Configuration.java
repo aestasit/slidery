@@ -8,6 +8,12 @@ import java.util.Date;
 
 import com.google.common.collect.Multimap;
 
+/**
+ * Converter configuration interface.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public interface Configuration {
 
   void validate() throws IllegalStateException;

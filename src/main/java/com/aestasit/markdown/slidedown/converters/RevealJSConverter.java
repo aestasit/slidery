@@ -2,14 +2,19 @@ package com.aestasit.markdown.slidedown.converters;
 
 import static com.aestasit.markdown.Resources.classpath;
 
-import java.util.HashMap;
-
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+/**
+ * Presentation converter that is based on <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> framework.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class RevealJSConverter extends TextTemplateConverter {
 
-  @Override
+  public static final String CONVERTER_ID = "reveal-js";
+
   protected void beforeStart(Configuration config) {
     
     config.templateFile(classpath("reveal.js/index.html"));
@@ -33,11 +38,6 @@ public class RevealJSConverter extends TextTemplateConverter {
     
   }
 
-  @Override
-  protected void expandBinding(HashMap<String, Object> binding, Document slidesDocument, Configuration config) {
-  }
-
-  @Override
   protected void transformDocument(Document slidesDocument) {
     for (Element list : slidesDocument.select("aside")) {
       list.addClass("notes");

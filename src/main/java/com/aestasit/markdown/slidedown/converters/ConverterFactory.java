@@ -3,8 +3,22 @@ package com.aestasit.markdown.slidedown.converters;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Converter factory that relies on <code>*.properties</code> files located 
+ * on the class path in <code>META-INF/slidedown-converters</code> directory.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public final class ConverterFactory {
 
+  /**
+   * Lookups <code>&lt;id&gt;.properties</pre></code> under <code>META-INF/slidedown-converters</code> directory 
+   * in the class path and based on <code>converter-class</code> property value creates {@link Converter} instance.  
+   * 
+   * @param id converter identifier.
+   * @return converter instance.
+   */
   public static Converter createConverter(String id) {
     return doCreateConverter(getConverterClassName(id));
   }

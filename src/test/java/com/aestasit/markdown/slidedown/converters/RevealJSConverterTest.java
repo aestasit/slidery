@@ -13,7 +13,7 @@ public class RevealJSConverterTest extends BaseConverterTest {
 
   @Test
   public void testFactoryConversion() throws IOException {
-    ConverterFactory.createConverter("reveal-js-base").render(createConfiguration());
+    ConverterFactory.createConverter(RevealJSConverter.CONVERTER_ID).render(createConfiguration());
   }
 
 }

@@ -13,7 +13,7 @@ public class DZSlidesConverterTest extends BaseConverterTest {
 
   @Test
   public void testFactoryConversion() throws IOException {
-    ConverterFactory.createConverter("dzslides-base").render(createConfiguration());
+    ConverterFactory.createConverter(DZSlidesConverter.CONVERTER_ID).render(createConfiguration());
   }
 
 }

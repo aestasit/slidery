@@ -27,10 +27,11 @@ import com.google.common.collect.Multimap;
  * <p>This is an abstract converter class that implements the following flow:</p>
  * 
  *   <ul>
- *     <li>configuration validation</li>
- *     <li>mark-down input file joining</li>
- *     <li>static file coping</li>
- *     <li>output directory creation</li> 
+ *     <li>validate configuration data</li>
+ *     <li>join mark-down input files</li>
+ *     <li>create output directory</li>
+ *     <li>copy static files e.g. images, CSS files, JavaScript files etc.</li>
+ *     <li>convert presentation to final format</li> 
  *     <li>clean up after conversion</li>
  *   </ul>
  * 

@@ -13,7 +13,7 @@ public class DeckJSConverterTest extends BaseConverterTest {
 
   @Test
   public void testFactoryConversion() throws IOException {
-    ConverterFactory.createConverter("deck-js-base").render(createConfiguration());
+    ConverterFactory.createConverter(DeckJSConverter.CONVERTER_ID).render(createConfiguration());
   }
 
 }
