@@ -12,27 +12,26 @@
 
  * support slide layout detection
  * support titleless slides
+ * implement echo visitor
+ * finish text extractor
+ * finish logging visitor
+ * add support for special characters e.g. dash, elippsis
+
+ * better exception handling and error messages in converter factory
 
  * add base shower converter
  * add base showoff converter
- * extend impress converter
+ 
+ * extend pdf converter to support more configuration options
+ * extend reveal.js converter to support more configuration options
+ * extend impress.js converter to support more configuration options
+ * extend deck.js converter to support more configuration options
+ * extend dzslides converter to support more configuration options
 
- * create test suite with different slide layouts
+ * add support for tables/definition lists to all CSS files
+
+ * update test suite with different slide layouts and markdown features
+ * expand image support (resizing, path changing, coping)
+ * add logo file support to converter logic
 
  * add support for syntax highlighting with jhighligter 
-
- * add support for pdf conversion with itext
-
- * add more configuration options
-   - themes
-   - colors
-   - logo
-   - fonts
-   - transitions
-   - special styling closures
-   - author 
-   - company
-   - current date
-   - notes on/off
-   - list items incremental or not
-
