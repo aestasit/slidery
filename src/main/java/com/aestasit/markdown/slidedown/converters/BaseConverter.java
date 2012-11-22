@@ -30,7 +30,7 @@ import com.google.common.collect.Multimap;
  *     <li>validate configuration data</li>
  *     <li>join mark-down input files</li>
  *     <li>create output directory</li>
- *     <li>copy static files e.g. images, CSS files, JavaScript files etc.</li>
+ *     <li>copy static files e.g. images, <i>CSS</i> files, <i>JavaScript</i> files etc.</li>
  *     <li>convert presentation to final format</li> 
  *     <li>clean up after conversion</li>
  *   </ul>

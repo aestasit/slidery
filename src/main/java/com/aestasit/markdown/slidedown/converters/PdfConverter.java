@@ -13,22 +13,24 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.lowagie.text.DocumentException;
 
+/**
+ * TODO: finish implemetation
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class PdfConverter extends TextTemplateConverter {
 
-  @Override
   protected void beforeStart(Configuration config) {
     config.templateFile(classpath("pdf/template.html"));
   }
 
-  @Override
   protected void expandBinding(HashMap<String, Object> binding, Document slidesDocument, Configuration config) {
   }
 
-  @Override
   protected void transformDocument(Document slidesDocument) {
   }
 
-  @Override
   protected void afterConversion(File inputFile, Configuration config) {
     try {
       ITextRenderer renderer = new ITextRenderer();

@@ -15,6 +15,12 @@ import org.pegdown.ast.RootNode;
 import com.aestasit.markdown.Markdown;
 import com.google.common.base.Preconditions;
 
+/**
+ * <code>Slidedown</code> conversion methods from <i>Markdown</i> to <i>HTML</i> to <i>DOM</i>.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public final class Slidedown {
 
   private static int DEFAULT_PEGDOWN_OPTIONS = Extensions.ALL + Extensions.SUPPRESS_ALL_HTML;

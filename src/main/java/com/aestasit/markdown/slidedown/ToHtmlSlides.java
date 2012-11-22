@@ -52,6 +52,28 @@ import com.google.common.base.Preconditions;
 
 import static com.aestasit.markdown.slidedown.ToHtmlSlides.SlideComponent.*;
 
+/**
+ * <p>{@link Visitor} pattern implementation that walks through <i>AST</i> created 
+ *    by <a href="https://github.com/sirthias/pegdown">Pegdown</a> parsing library 
+ *    and produces structured output with the help of <i>HTML5</i> tags:</p>
+ * 
+ * <pre>
+ *   &lt;body> 
+ *     &lt;section>
+ *       &lt;header>  ...slide title...     &lt;/header>
+ *       &lt;div>     ...slide content...   &lt;/div>
+ *       &lt;aside>   ...slide notes...     &lt;/aside>
+ *     &lt;/section>
+ *     ...
+ *   &lt;/body>    
+ * </pre>
+ *        
+ * <p>Code of this class is largely based on the code of <a href="https://raw.github.com/sirthias/pegdown/master/src/main/java/org/pegdown/ToHtmlSerializer.java">ToHtmlSerializer</a> 
+ * from <a href="https://github.com/sirthias/pegdown">Pegdown</a> parser library.</p>  
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class ToHtmlSlides extends BaseVisitor implements Visitor {
 
   protected Printer                          printer       = new Printer();

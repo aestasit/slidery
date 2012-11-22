@@ -14,6 +14,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
+/**
+ * Utility methods to convert different content sources (e.g. class path references, <i>URL</i>s) 
+ * to existing file objects on the local file system . 
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public final class Resources {
 
   public static File file(String filePath) {

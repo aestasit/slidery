@@ -14,6 +14,12 @@ import com.aestasit.markdown.visitors.EchoVisitor;
 import com.aestasit.markdown.visitors.LoggingVisitor;
 import com.aestasit.markdown.visitors.TextExtractor;
 
+/**
+ * Markdown processing utility methods that wrap around <a href="https://github.com/sirthias/pegdown">Pegdown</a> parsing library.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class Markdown {
 
   // ////////////////////////////////////////////////////////////////////////////////////////////////////////

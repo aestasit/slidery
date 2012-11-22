@@ -20,17 +20,17 @@ import org.jsoup.select.Elements;
  * <p>The template has access the following variables:</p>
  *   
  *  <ul>
- *    <li><code>document</code> - full DOM tree of the slides document</li>
+ *    <li><code>document</code> - full <i>DOM</i> tree of the slides document</li>
  *    <li><code>body</code> - body element</li>
  *    <li><code>slides</code> - collection of slide elements</li>
- *    <li><code>title</code> - first slide title</li>
+ *    <li><code>title</code> - the first slide title</li>
  *  </ul>   
  * 
  * <p>It also provides a number of hook methods for the subclasses to extend default behavior:</p> 
  * 
  *   <ul>
  *     <li>{@link #expandBinding(HashMap, Document, Configuration)} method allows adding more binding variables available to the template.</li>
- *     <li>{@link #transformDocument(Document)} method allows modifying DOM tree of the slides document</li>
+ *     <li>{@link #transformDocument(Document)} method allows modifying <i>DOM</i> tree of the slides document.</li>
  *   </ul>
  *   
  * @author Andrey Adamovich
