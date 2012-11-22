@@ -1,5 +1,9 @@
 
-# Centered Image
+# Centred Image
+
+![logo](LOGO_300dpi.png)
+
+# Horizontal Image
 
 ![logo](LOGO_FULL_300dpi.png)
 
