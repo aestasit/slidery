@@ -15,6 +15,12 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 
+/**
+ * Straight-forward in-memory implementation of the {@link Configuration} interface.
+ * 
+ * @author Andrey Adamovich
+ *
+ */
 public class SimpleConfiguration implements Configuration {
 
   private File                     templateFile;

@@ -35,13 +35,13 @@ import com.google.common.collect.Multimap;
  *     <li>clean up after conversion</li>
  *   </ul>
  * 
- * <p>Actual conversion is delegated to the subclasses which need to override abstract <code>convert</code> method. 
+ * <p>Actual conversion is delegated to the subclasses, which need to override abstract {@link #convert(Document, Writer, Configuration)} method. 
  *    It also provides a number of hook methods for the subclasses to extend default behavior:</p> 
  * 
  *   <ul>
- *    <li><code>beforeStart</code></li>
- *    <li><code>beforeConversion</code></li>
- *    <li><code>afterConversion</code></li>
+ *    <li>{@link #beforeStart(Configuration)}</li>
+ *    <li>{@link #beforeConversion(File, Configuration)}</li>
+ *    <li>{@link #afterConversion(File, Configuration)}</li>
  *   </ul>
  *   
  * @author Andrey Adamovich
