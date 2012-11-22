@@ -2,7 +2,7 @@ package com.aestasit.markdown.slidedown.converters;
 
 import static com.aestasit.markdown.Resources.classpath;
 import static com.aestasit.markdown.Resources.file;
-import static org.apache.commons.io.FileUtils.deleteDirectory;
+// import static org.apache.commons.io.FileUtils.deleteDirectory;
 
 import java.io.IOException;
 
@@ -26,7 +26,7 @@ public class BaseConverterTest extends BaseTest {
 
   @After
   public void clean() throws IOException {
-    deleteDirectory(file("./tmp"));
+    // deleteDirectory(file("./tmp"));
   }
 
 }

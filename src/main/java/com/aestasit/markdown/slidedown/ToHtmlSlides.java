@@ -238,19 +238,19 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
   public void visit(QuotedNode node) {
     switch (node.getType()) {
       case DoubleAngle:
-        printer.print("\"");
+        printer.print("\""); // TODO: "&laquo;" 
         visitChildren(node);
-        printer.print("\"");
+        printer.print("\""); // TODO: "&raquo;"
         break;
       case Double:
-        printer.print("\"");
+        printer.print("\""); // TODO: &ldquo;
         visitChildren(node);
-        printer.print("\"");
+        printer.print("\""); // TODO: &rdquo;
         break;
       case Single:
-        printer.print("'");
+        printer.print("'"); // TODO: &lsquo; 
         visitChildren(node);
-        printer.print("'");
+        printer.print("'"); // TODO: &rsquo;
         break;
     }
   }
@@ -294,16 +294,16 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
   public void visit(SimpleNode node) {
     switch (node.getType()) {
       case Apostrophe:
-        printer.print("'");
+        printer.print("'"); // TODO: &rsquo;
         break;
       case Ellipsis:
-        printer.print("&hellip;");
+        printer.print("..."); // TODO: &hellip;
         break;
       case Emdash:
-        printer.print("&mdash;");
+        printer.print("-"); // TODO: &mdash;
         break;
       case Endash:
-        printer.print("&ndash;");
+        printer.print("-"); // TODO: &ndash;
         break;
       case HRule:
         startSlideNotes();
@@ -450,9 +450,11 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
   protected void printImageTag(SuperNode imageNode, String url, String title) {
     startOfContent = false;
     printer.print("<figure>").indent(+2).println();
-    String caption = printChildrenToString(imageNode);
-    printer.print("<img src=\"").print(url).print("\"  alt=\"").printEncoded(caption).print("\"/>").println();
-    printer.print("<figcaption>").print(caption).print("</figcaption>").indent(-2).println();
+    String alternativeText = printChildrenToString(imageNode);
+    printer.print("<img src=\"").print(url).print("\"  alt=\"").printEncoded(alternativeText).print("\"/>").println();
+    if (!StringUtils.isEmpty(title)) {
+      printer.print("<figcaption>").print(title).print("</figcaption>").indent(-2).println();
+    }
     printer.print("</figure>");
   }
 
