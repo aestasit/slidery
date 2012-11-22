@@ -6,6 +6,8 @@ Slidedown is a pure-Java library to support creation of presentation slides writ
 Getting started
 ======================
 
+**TODO**
+
 ```java
 
 import static com.aestasit.markdown.Resources.classpath;
@@ -36,18 +38,34 @@ ConverterFactory
 Converters
 ======================
 
-
-
-Advanced configuration
-======================
-
+**TODO**
 
 
 Themes
 ======================
 
+**TODO**
+
+
+Images
+======================
+
+**TODO**
+
+
+Advanced configuration
+======================
+
+**TODO**
+
+
+Recommendations
+======================
+
+**TODO**
 
 
 Custom converters
 ======================
 
+**TODO**
