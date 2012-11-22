@@ -15,7 +15,7 @@ public class MarkdownTest extends BaseTest {
 
   @Test
   public void testLoadingMethods() throws IOException {
-    RootNode rootNode = Markdown.toAst(testData("01_simple_slides.md"));
+    RootNode rootNode = Markdown.toAst(allTestData());
     Assert.assertNotNull(rootNode);
     
     // TODO: extend method coverage    
