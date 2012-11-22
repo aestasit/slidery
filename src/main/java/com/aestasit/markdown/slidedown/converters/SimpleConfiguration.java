@@ -162,11 +162,14 @@ public class SimpleConfiguration implements Configuration {
   }
 
   public Configuration currentDate() {
-    this.date = new Date(date.getTime());
+    this.date = new Date();
     return this;
   }
 
   public Date getDate() {
+    if (date == null) {
+      currentDate();
+    }
     return new Date(date.getTime());
   }
 
