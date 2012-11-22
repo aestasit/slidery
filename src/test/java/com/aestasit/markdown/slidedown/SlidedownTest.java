@@ -34,10 +34,13 @@ public class SlidedownTest extends BaseTest {
   protected void validateSlides(String slides) {
     log.debug("Validating slides: " + slides);
     assertTrue("Output contains disallowed tags",
-        isValid( slides.replaceAll("src=\"", "src=\"http://"), 
+        isValid( slides
+                   .replaceAll("src=\"", "src=\"http://")
+                   .replaceAll("href=\"", "href=\"http://"), 
                  relaxed()
-                   .addTags("section", "aside", "div", "figure", "figcaption", "header")
+                   .addTags("section", "aside", "div", "figure", "figcaption", "header", "abbr")
                    .addAttributes("code", "class")
+                   .addAttributes("abbr", "title")
                    .addAttributes("td", "abbr", "axis", "colspan", "rowspan", "width", "align")
                    .addAttributes("th", "abbr", "axis", "colspan", "rowspan", "scope", "width", "align")
             ));

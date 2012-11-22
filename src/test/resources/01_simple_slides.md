@@ -10,12 +10,12 @@
 
 # Services
 
-  - Project bootstrapping
-  - Mentoring  
-  - Troubleshooting/Performance tuning
-  - Code and architecture review 
-  - Custom development
-  - **Training**
+  1. Project bootstrapping
+  2. Mentoring  
+  3. Troubleshooting/Performance tuning
+  4. Code and architecture review 
+  5. Custom development
+  6. **Training**
 
 # Quote
 

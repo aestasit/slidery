@@ -36,7 +36,9 @@ public class BaseTest {
         "02_image_slides.md", 
         "03_code_slides.md", 
         "04_slide_notes.md",
-        "05_table_slides.md" };
+        "05_table_slides.md",
+        "06_slides_with_links.md",        
+    };
   }
 
 }
