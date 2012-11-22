@@ -7,8 +7,13 @@ import org.junit.Test;
 public class ImpressJSConverterTest extends BaseConverterTest {
 
   @Test
-  public void testConversion() throws IOException {
+  public void testDirectConversion() throws IOException {
     new ImpressJSConverter().render(createConfiguration());
+  }
+
+  @Test
+  public void testFactoryConversion() throws IOException {
+    ConverterFactory.createConverter("impress-js-base").render(createConfiguration());
   }
 
 }

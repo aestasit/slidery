@@ -2,19 +2,31 @@ package com.aestasit.markdown.slidedown.converters;
 
 import static com.aestasit.markdown.Resources.classpath;
 import static com.aestasit.markdown.Resources.file;
+import static org.apache.commons.io.FileUtils.deleteDirectory;
 
-public class BaseConverterTest {
+import java.io.IOException;
+
+import org.junit.After;
+
+import com.aestasit.markdown.BaseTest;
+
+public class BaseConverterTest extends BaseTest {
 
   protected Configuration createConfiguration() {
-    // Configure converter.
-    Configuration config = new SimpleConfiguration();
-    config.inputFile(classpath("test_slides.md"))
-        .outputFile(file("tmp/presentation.html"))
-        .staticFile(classpath("AESTAS_SITE_TRAINING.png"))
-        .staticFile(classpath("BETTER_DEVELOPER_TRACK.png"))
-        .staticFile(classpath("AESTAS_TRAINING.png"))
+    return new SimpleConfiguration()
+        .inputFile(classpath("01_simple_slides.md"))
+        .inputFile(classpath("02_image_slides.md"))
+        .inputFile(classpath("03_code_slides.md"))
+        .inputFile(classpath("04_slide_notes.md"))
+        .staticFile(classpath("LOGO_300dpi.png"))
+        .staticFile(classpath("LOGO_FULL_300dpi.png"))
+        .outputFile(file("./tmp/presentation.html"))
         .encoding("UTF-8");
-    return config;
+  }
+
+  @After
+  public void clean() throws IOException {
+    deleteDirectory(file("./tmp"));
   }
 
 }

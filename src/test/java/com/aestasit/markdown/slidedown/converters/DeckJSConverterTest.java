@@ -7,8 +7,13 @@ import org.junit.Test;
 public class DeckJSConverterTest extends BaseConverterTest {
 
   @Test
-  public void testConversion() throws IOException {
+  public void testDirectConversion() throws IOException {
     new DeckJSConverter().render(createConfiguration());
+  }
+
+  @Test
+  public void testFactoryConversion() throws IOException {
+    ConverterFactory.createConverter("deck-js-base").render(createConfiguration());
   }
 
 }

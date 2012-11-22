@@ -7,8 +7,13 @@ import org.junit.Test;
 public class RevealJSConverterTest extends BaseConverterTest {
 
   @Test
-  public void testConversion() throws IOException {
+  public void testDirectConversion() throws IOException {
     new RevealJSConverter().render(createConfiguration());
+  }
+
+  @Test
+  public void testFactoryConversion() throws IOException {
+    ConverterFactory.createConverter("reveal-js-base").render(createConfiguration());
   }
 
 }
