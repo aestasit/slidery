@@ -18,6 +18,7 @@ public class BaseConverterTest extends BaseTest {
         .inputFile(classpath("02_image_slides.md"))
         .inputFile(classpath("03_code_slides.md"))
         .inputFile(classpath("04_slide_notes.md"))
+        .inputFile(classpath("05_table_slides.md"))
         .staticFile(classpath("LOGO_300dpi.png"))
         .staticFile(classpath("LOGO_FULL_300dpi.png"))
         .outputFile(file("./tmp/presentation.html"))

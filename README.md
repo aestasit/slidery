@@ -1,7 +1,7 @@
 Slidedown
 =====================
 
-Java library to support creation of presentation slides written in Markdown.
+Slidedown is a pure-Java library to support creation of presentation slides written in Markdown format.
 
 Getting started
 ======================
@@ -32,7 +32,18 @@ ConverterFactory
 
 ```
 
+
+Converters
+======================
+
+
+
 Advanced configuration
+======================
+
+
+
+Themes
 ======================
 
 

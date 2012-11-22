@@ -2,7 +2,7 @@ package com.aestasit.markdown;
 
 import java.io.IOException;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
 import org.pegdown.ast.RootNode;
