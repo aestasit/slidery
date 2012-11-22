@@ -23,7 +23,7 @@ import com.google.common.base.Preconditions;
  */
 public final class Slidedown {
 
-  private static int DEFAULT_PEGDOWN_OPTIONS = Extensions.ALL + Extensions.SUPPRESS_ALL_HTML;
+  public static int DEFAULT_PEGDOWN_OPTIONS = Extensions.ALL + Extensions.SUPPRESS_ALL_HTML;
 
   public static String toSlides(RootNode node) {
     Preconditions.checkNotNull(node, "astRoot");

@@ -26,6 +26,7 @@ public class BaseTest {
     for (String fileName : allTestFiles()) {
       IOUtils.write(IOUtils.toString(testData(fileName)), data);
     }
+    IOUtils.closeQuietly(data);
     return new ByteArrayInputStream(data.toByteArray());
   }
 
