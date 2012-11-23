@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
  * Presentation converter that is based on <a href="http://paulrouget.com/dzslides/">DZSlides</a> framework.
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public class DZSlidesConverter extends TextTemplateConverter {
 
@@ -21,9 +21,12 @@ public class DZSlidesConverter extends TextTemplateConverter {
     config.staticFile(classpath("dzslides/embedder.html"));
   }
 
-  protected void transformDocument(Document slidesDocument) {
-    for (Element list : slidesDocument.select("div ul, div ol")) {
-      list.addClass("incremental");
+  protected void transformDocument(Document slidesDocument, Configuration config) {
+    super.transformDocument(slidesDocument, config);
+    if (config.listsIncremented()) {
+      for (Element list : slidesDocument.select("div ul, div ol")) {
+        list.addClass("incremental");
+      }
     }
   }
 

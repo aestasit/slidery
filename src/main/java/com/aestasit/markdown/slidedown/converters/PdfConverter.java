@@ -15,8 +15,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.lowagie.text.DocumentException;
 
 /**
- * Presentation converter that is based on <a
- * href="http://itextpdf.com/">iText</a> library capable of converting
+ * Presentation converter that is based on <a href="http://itextpdf.com/">iText</a> library capable of converting
  * <i>HTML</i> to <i>PDF</i>.
  * 
  * @author Andrey Adamovich

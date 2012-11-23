@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
@@ -62,7 +63,7 @@ public abstract class TextTemplateConverter extends BaseConverter {
 
   final protected void convert(Document slidesDocument, Writer output, Configuration config) throws IOException {
     String templateText = readFileToString(config.getTemplateFile(), config.getInputEncoding().name());
-    transformDocument(slidesDocument);
+    transformDocument(slidesDocument, config);
     HashMap<String, Object> parameters = createBinding(slidesDocument, config);
     compileTemplate(templateText).make(parameters).writeTo(output);
   }
@@ -113,8 +114,12 @@ public abstract class TextTemplateConverter extends BaseConverter {
     // Override in subclasses.
   }
 
-  protected void transformDocument(final Document slidesDocument) {
-    // Override in subclasses.
+  protected void transformDocument(final Document slidesDocument, final Configuration config) {
+    if (!config.notesIncluded()) {
+      for (Element notesElement : slidesDocument.select("aside")) {
+        notesElement.remove();
+      }
+    }
   }
 
   protected Elements getSlideCollection(Document slidesDocument) {

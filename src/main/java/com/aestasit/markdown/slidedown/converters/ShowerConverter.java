@@ -6,7 +6,7 @@ import static com.aestasit.markdown.Resources.classpath;
  * Presentation converter that is based on <a href="https://github.com/pepelsbey/shower">shower</a> framework.
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public class ShowerConverter extends TextTemplateConverter {
 
@@ -22,7 +22,5 @@ public class ShowerConverter extends TextTemplateConverter {
     config.staticFile("themes/ribbon/styles", classpath("shower/themes/ribbon/styles/reset.css"));
     config.staticFile("themes/ribbon/styles", classpath("shower/themes/ribbon/styles/style.css"));
   }
-
-
 
 }

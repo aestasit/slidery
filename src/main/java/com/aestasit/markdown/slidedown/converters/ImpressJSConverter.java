@@ -6,7 +6,7 @@ import static com.aestasit.markdown.Resources.classpath;
  * Presentation converter that is based on <a href="http://bartaz.github.com/impress.js">impress.js</a> framework.
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public class ImpressJSConverter extends TextTemplateConverter {
 

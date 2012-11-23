@@ -2,11 +2,15 @@ package com.aestasit.markdown.slidedown.converters;
 
 import static com.aestasit.markdown.Resources.classpath;
 
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 /**
- * Presentation converter that is based on <a href="http://imakewebthings.com/deck.js/">deck.js</a> framework.
+ * Presentation converter that is based on <a
+ * href="http://imakewebthings.com/deck.js/">deck.js</a> framework.
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public class DeckJSConverter extends TextTemplateConverter {
 
@@ -18,7 +22,7 @@ public class DeckJSConverter extends TextTemplateConverter {
 
     config.staticFile(classpath("deck.js/jquery-1.7.2.min.js"));
     config.staticFile(classpath("deck.js/modernizr.custom.js"));
-    
+
     config.staticFile("core", classpath("deck.js/core/deck.core.css"));
     config.staticFile("core", classpath("deck.js/core/deck.core.js"));
 
@@ -38,6 +42,15 @@ public class DeckJSConverter extends TextTemplateConverter {
     String basePath = "deck.js/extensions/" + extension + "/deck." + extension;
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
     config.staticFile("extensions/" + extension, classpath(basePath + ".js"));
+  }
+
+  protected void transformDocument(Document slidesDocument, Configuration config) {
+    super.transformDocument(slidesDocument, config);
+    if (config.listsIncremented()) {
+      for (Element list : slidesDocument.select("div li")) {
+        list.addClass("slide");
+      }
+    }
   }
 
 }
