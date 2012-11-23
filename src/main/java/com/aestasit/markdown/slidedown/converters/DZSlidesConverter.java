@@ -17,6 +17,8 @@ public class DZSlidesConverter extends TextTemplateConverter {
 
   protected void beforeStart(Configuration config) {
     config.templateFile(classpath("dzslides/template.html"));
+    config.staticFile(classpath("dzslides/onstage.html"));
+    config.staticFile(classpath("dzslides/embedder.html"));
   }
 
   protected void transformDocument(Document slidesDocument) {
