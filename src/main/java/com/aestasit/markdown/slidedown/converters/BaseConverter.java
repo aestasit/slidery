@@ -41,7 +41,7 @@ import com.google.common.collect.Multimap;
  * 
  * <p>
  * Actual conversion is delegated to the subclasses, which need to override
- * abstract {@link #convert(Document, Writer, Configuration)} method. It also
+ * abstract {@link #convert(Writer, Document, Configuration)} method. It also
  * provides a number of hook methods for the subclasses to extend default
  * behavior:
  * </p>
@@ -61,7 +61,7 @@ public abstract class BaseConverter implements Converter {
     beforeStart(config);
     config.validate();
     copyStaticFiles(config.getStaticFiles(), createOutputDirectory(config));
-    createOutput(config, joinInputFiles(config));
+    createOutput(joinInputFiles(config), config);
   }
 
   @SuppressWarnings("unchecked")
@@ -91,7 +91,7 @@ public abstract class BaseConverter implements Converter {
     }
   }
 
-  private void createOutput(Configuration config, File joinedFile) throws IOException {
+  private void createOutput(File joinedFile, Configuration config) throws IOException {
     beforeConversion(joinedFile, config);
     convertFile(config, joinedFile, config.getOutputFile());
     if (config.isSplitOutput()) {
@@ -112,7 +112,7 @@ public abstract class BaseConverter implements Converter {
     FileOutputStream outputStream = null;
     try {
       outputStream = openOutputStream(outputFile);
-      convert(toDom(inputFile), new OutputStreamWriter(outputStream), config);
+      convert(new OutputStreamWriter(outputStream), toDom(inputFile), config);
     } finally {
       closeQuietly(outputStream);
     }
@@ -141,7 +141,7 @@ public abstract class BaseConverter implements Converter {
   protected void beforeConversion(File inputFile, Configuration config) {
   }
 
-  protected abstract void convert(Document slidesDocument, Writer writer, Configuration config) throws IOException;
+  protected abstract void convert(Writer writer, Document slidesDocument, Configuration config) throws IOException;
 
   protected void afterConversion(File inputFile, Configuration config) {
   }

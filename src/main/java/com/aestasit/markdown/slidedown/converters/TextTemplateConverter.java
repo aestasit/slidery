@@ -61,7 +61,7 @@ import org.jsoup.select.Elements;
  */
 public abstract class TextTemplateConverter extends BaseConverter {
 
-  final protected void convert(Document slidesDocument, Writer output, Configuration config) throws IOException {
+  final protected void convert(Writer output, Document slidesDocument, Configuration config) throws IOException {
     String templateText = readFileToString(config.getTemplateFile(), config.getInputEncoding().name());
     transformDocument(slidesDocument, config);
     HashMap<String, Object> parameters = createBinding(slidesDocument, config);
@@ -71,20 +71,20 @@ public abstract class TextTemplateConverter extends BaseConverter {
   private HashMap<String, Object> createBinding(Document slidesDocument, Configuration config) {
     HashMap<String, Object> binding = new HashMap<String, Object>();
     binding.put("configuration", config);
-    bindTitle(slidesDocument, config, binding);
-    bindDomElements(slidesDocument, binding);
-    bindConfigurationElements(config, binding);
+    bindTitle(binding, slidesDocument, config);
+    bindDomElements(binding, slidesDocument);
+    bindConfigurationElements(binding, config);
     expandBinding(binding, slidesDocument, config);
     return binding;
   }
 
-  private void bindDomElements(Document slidesDocument, HashMap<String, Object> binding) {
+  private void bindDomElements(HashMap<String, Object> binding, Document slidesDocument) {
     binding.put("document", slidesDocument);
     binding.put("body", slidesDocument.getElementsByTag("body").first());
     binding.put("slides", getSlideCollection(slidesDocument));
   }
 
-  private void bindTitle(Document slidesDocument, Configuration config, HashMap<String, Object> binding) {
+  private void bindTitle(HashMap<String, Object> binding, Document slidesDocument, Configuration config) {
     if (!isBlank(config.getTitle())) {
       binding.put("title", config.getTitle());
     } else {
@@ -92,7 +92,7 @@ public abstract class TextTemplateConverter extends BaseConverter {
     }
   }
 
-  private void bindConfigurationElements(Configuration config, HashMap<String, Object> binding) {
+  private void bindConfigurationElements(HashMap<String, Object> binding, Configuration config) {
     binding.put("author", config.getAuthor());
     binding.put("company", config.getCompany());
     binding.put("description", config.getDescription());
