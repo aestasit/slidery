@@ -2,6 +2,7 @@ package com.aestasit.markdown.visitors;
 
 import java.io.PrintStream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.pegdown.ast.AbbreviationNode;
 import org.pegdown.ast.AutoLinkNode;
 import org.pegdown.ast.BlockQuoteNode;
@@ -38,209 +39,213 @@ import org.pegdown.ast.TableNode;
 import org.pegdown.ast.TableRowNode;
 import org.pegdown.ast.TextNode;
 import org.pegdown.ast.VerbatimNode;
-import org.pegdown.ast.Visitor;
 import org.pegdown.ast.WikiLinkNode;
 
+import com.google.common.base.Preconditions;
+
 /**
- * Mark-down re-printer.
  * 
- * TODO: finish implementation
+ * Visitor that prints AST to the given {@link PrintStream}. 
  * 
  * @author Andrey Adamovich
- * 
+ *
  */
-public class EchoVisitor extends BaseVisitor implements Visitor {
+public class AstPrinter extends BaseVisitor {
 
   private final PrintStream printer;
 
-  public EchoVisitor(PrintStream printer) {
+  public AstPrinter(PrintStream printer) {
     super();
+    Preconditions.checkNotNull(printer, "Printer is not given!");
     this.printer = printer;
   }
 
+  protected void printNode(Node node) {
+    printer.print(StringUtils.repeat(" ", level) + node.toString());
+  }
+
   public void visit(AbbreviationNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(AutoLinkNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(BlockQuoteNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(BulletListNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(CodeNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(DefinitionListNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(DefinitionNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(DefinitionTermNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(EmphNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(ExpImageNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(ExpLinkNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(HeaderNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(HtmlBlockNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(InlineHtmlNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(ListItemNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(MailLinkNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(OrderedListNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(ParaNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(QuotedNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(ReferenceNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(RefImageNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(RefLinkNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(RootNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(SimpleNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(SpecialTextNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(StrongNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TableBodyNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TableCellNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TableColumnNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TableHeaderNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TableNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TableRowNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(VerbatimNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(WikiLinkNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(TextNode node) {
-    logNode(node);
-    printer.print(node.getText());
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(SuperNode node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 
   public void visit(Node node) {
-    logNode(node);
+    printNode(node);
     visitChildren(node);
   }
 

@@ -4,13 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.URL;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.pegdown.PegDownProcessor;
 import org.pegdown.ast.RootNode;
 
-import com.aestasit.markdown.visitors.EchoVisitor;
+import com.aestasit.markdown.visitors.AstPrinter;
 import com.aestasit.markdown.visitors.LoggingVisitor;
 import com.aestasit.markdown.visitors.TextExtractor;
 
@@ -71,13 +73,17 @@ public class Markdown {
   // ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public static String extractText(RootNode node) {
-    return new TextExtractor(System.out).getText(node);
+    ByteArrayOutputStream data = new ByteArrayOutputStream();
+    new TextExtractor(new PrintStream(data)).visit(node);
+    return new String(data.toByteArray());
   }
 
-  public static void echoMarkdown(RootNode node) {
-    new EchoVisitor(System.out).visit(node);
+  public static String printAst(RootNode node) {
+    ByteArrayOutputStream data = new ByteArrayOutputStream();
+    new AstPrinter(new PrintStream(data)).visit(node);
+    return new String(data.toByteArray());
   }
- 
+
   public static void logAst(RootNode node) {
     new LoggingVisitor().visit(node);
   }
