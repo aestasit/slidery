@@ -20,7 +20,11 @@
  * better exception handling and error messages in converter factory
 
  * add base shower converter
- * add base showoff converter
+ * add base fathom.js converter http://markdalgleish.com/projects/fathom/
+ * add base google/io converter 
+ * add base csss converter 
+ * add 3d cube converter  
+ * review http://www.impressivewebs.com/html-slidedeck-toolkits/
  
  * extend pdf converter to support more configuration options
  * extend reveal.js converter to support more configuration options
