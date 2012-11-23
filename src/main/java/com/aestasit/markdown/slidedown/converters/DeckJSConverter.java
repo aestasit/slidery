@@ -1,6 +1,7 @@
 package com.aestasit.markdown.slidedown.converters;
 
 import static com.aestasit.markdown.Resources.classpath;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,7 +34,10 @@ public class DeckJSConverter extends TextTemplateConverter {
     addExtension(config, "goto");
     addExtension(config, "menu");
 
-    config.staticFile("themes/style", classpath("deck.js/themes/style/web-2.0.css"));
+    if (isBlank(config.getTheme())) {
+      config.theme("web-2.0");
+    }
+    config.staticFile("themes/style", classpath("deck.js/themes/style/" + config.getTheme() + ".css"));
     config.staticFile("themes/transition", classpath("deck.js/themes/transition/horizontal-slide.css"));
 
   }

@@ -10,6 +10,7 @@ import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import static org.apache.commons.lang3.ObjectUtils.*;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,8 +18,8 @@ import org.jsoup.select.Elements;
 
 /**
  * <p>
- * This is an extension to {@link BaseConverter} that processes configured
- * template file with the help of Groovy's {@link SimpleTemplateEngine}.
+ * This is an extension to {@link BaseConverter} that processes configured template file with the help of Groovy's
+ * {@link SimpleTemplateEngine}.
  * </p>
  * 
  * <p>
@@ -45,15 +46,13 @@ import org.jsoup.select.Elements;
  * </ul>
  * 
  * <p>
- * It also provides a number of hook methods for the subclasses to extend
- * default behavior:
+ * It also provides a number of hook methods for the subclasses to extend default behavior:
  * </p>
  * 
  * <ul>
- * <li>{@link #expandBinding(HashMap, Document, Configuration)} method allows
- * adding more binding variables available to the template.</li>
- * <li>{@link #transformDocument(Document)} method allows modifying <i>DOM</i>
- * tree of the slides document.</li>
+ * <li>{@link #expandBinding(HashMap, Document, Configuration)} method allows adding more binding variables available to
+ * the template.</li>
+ * <li>{@link #transformDocument(Document)} method allows modifying <i>DOM</i> tree of the slides document.</li>
  * </ul>
  * 
  * @author Andrey Adamovich
@@ -95,7 +94,7 @@ public abstract class TextTemplateConverter extends BaseConverter {
   private void bindConfigurationElements(HashMap<String, Object> binding, Configuration config) {
     binding.put("author", config.getAuthor());
     binding.put("company", config.getCompany());
-    binding.put("description", config.getDescription());
+    binding.put("description", defaultIfNull(config.getDescription(), binding.get("title")));
     binding.put("date", new SimpleDateFormat("dd-mm-yyyy").format(config.getDate()));
     binding.put("backgroundColor", config.getBackgroundColor());
     binding.put("fontColor", config.getFontColor());
