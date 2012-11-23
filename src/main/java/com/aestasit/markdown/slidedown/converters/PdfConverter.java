@@ -35,16 +35,21 @@ public class PdfConverter extends TextTemplateConverter {
         .staticFile("style", classpath("pdf/style/reset.css"));
   }
 
-  protected void afterConversion(File inputFile, Configuration config) {
-    convertToPdf(config);
+  protected void afterConversion(File joinedInputFile, Configuration config) {
+    convertToPdf(config.getOutputFile());
+    if (config.isSplitOutput()) {
+      for (File inputFile : config.getInputFiles()) {
+        convertToPdf(getSplitOutputFile(config.getOutputFile(), inputFile));
+      }
+    }
     deleteStaticFiles(config);
   }
 
-  private void convertToPdf(Configuration config) {
+  private void convertToPdf(File outputFile) {
     File tempFile = null;
     try {
       ITextRenderer renderer = new ITextRenderer();
-      renderer.setDocument(config.getOutputFile());
+      renderer.setDocument(outputFile);
       renderer.layout();
       tempFile = File.createTempFile("slidedown", ".pdf");
       FileOutputStream outputStream = new FileOutputStream(tempFile);
@@ -55,7 +60,7 @@ public class PdfConverter extends TextTemplateConverter {
       } finally {
         closeQuietly(outputStream);
       }
-      copyFile(tempFile, config.getOutputFile());
+      copyFile(tempFile, outputFile);
     } catch (IOException e) {
       throw new RuntimeException(e);
     } finally {

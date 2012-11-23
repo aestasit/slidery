@@ -103,7 +103,7 @@ public abstract class BaseConverter implements Converter {
     deleteTemporaryFiles(joinedFile, config);
   }
 
-  private File getSplitOutputFile(File outputFile, File inputFile) {
+  protected File getSplitOutputFile(File outputFile, File inputFile) {
     String inputFileName = getBaseName(inputFile.getName()) + '.' + getExtension(outputFile.getName());
     return new File(outputFile.getParentFile(), inputFileName);
   }
