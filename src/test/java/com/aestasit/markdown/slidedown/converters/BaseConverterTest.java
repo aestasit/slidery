@@ -21,6 +21,7 @@ public class BaseConverterTest extends BaseTest {
         .staticFile(classpath("LOGO_300dpi.png"))
         .staticFile(classpath("LOGO_FULL_300dpi.png"))
         .outputFile(file("./tmp/presentation.html"))
+        .splitOutput()
         .encoding("UTF-8");
     for(String filePath: allTestFiles()) {
       config.inputFile(classpath(filePath));

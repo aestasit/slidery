@@ -19,31 +19,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import static org.apache.commons.io.FilenameUtils.*;
 import org.jsoup.nodes.Document;
 
 import com.google.common.collect.Multimap;
 
 /**
- * <p>This is an abstract converter class that implements the following flow:</p>
+ * <p>
+ * This is an abstract converter class that implements the following flow:
+ * </p>
  * 
- *   <ul>
- *     <li>validate configuration data</li>
- *     <li>join mark-down input files</li>
- *     <li>create output directory</li>
- *     <li>copy static files e.g. images, <i>CSS</i> files, <i>JavaScript</i> files etc.</li>
- *     <li>convert presentation to final format</li> 
- *     <li>clean up after conversion</li>
- *   </ul>
+ * <ul>
+ * <li>validate configuration data</li>
+ * <li>join mark-down input files</li>
+ * <li>create output directory</li>
+ * <li>copy static files e.g. images, <i>CSS</i> files, <i>JavaScript</i> files
+ * etc.</li>
+ * <li>convert presentation to final format</li>
+ * <li>clean up after conversion</li>
+ * </ul>
  * 
- * <p>Actual conversion is delegated to the subclasses, which need to override abstract {@link #convert(Document, Writer, Configuration)} method. 
- *    It also provides a number of hook methods for the subclasses to extend default behavior:</p> 
+ * <p>
+ * Actual conversion is delegated to the subclasses, which need to override
+ * abstract {@link #convert(Document, Writer, Configuration)} method. It also
+ * provides a number of hook methods for the subclasses to extend default
+ * behavior:
+ * </p>
  * 
- *   <ul>
- *    <li>{@link #beforeStart(Configuration)}</li>
- *    <li>{@link #beforeConversion(File, Configuration)}</li>
- *    <li>{@link #afterConversion(File, Configuration)}</li>
- *   </ul>
- *   
+ * <ul>
+ * <li>{@link #beforeStart(Configuration)}</li>
+ * <li>{@link #beforeConversion(File, Configuration)}</li>
+ * <li>{@link #afterConversion(File, Configuration)}</li>
+ * </ul>
+ * 
  * @author Andrey Adamovich
  * 
  */
@@ -85,15 +93,29 @@ public abstract class BaseConverter implements Converter {
 
   private void createOutput(Configuration config, File joinedFile) throws IOException {
     beforeConversion(joinedFile, config);
-    FileOutputStream outputStream = null;
-    try {
-      outputStream = openOutputStream(config.getOutputFile());
-      convert(toDom(joinedFile), new OutputStreamWriter(outputStream), config);
-    } finally {
-      closeQuietly(outputStream);
+    convertFile(config, joinedFile, config.getOutputFile());
+    if (config.isSplitOutput()) {
+      for (File inputFile : config.getInputFiles()) {
+        convertFile(config, inputFile, getSplitOutputFile(config.getOutputFile(), inputFile));
+      }
     }
     afterConversion(joinedFile, config);
     deleteTemporaryFiles(joinedFile, config);
+  }
+
+  private File getSplitOutputFile(File outputFile, File inputFile) {
+    String inputFileName = getBaseName(inputFile.getName()) + '.' + getExtension(outputFile.getName());
+    return new File(outputFile.getParentFile(), inputFileName);
+  }
+
+  private void convertFile(Configuration config, File inputFile, File outputFile) throws IOException {
+    FileOutputStream outputStream = null;
+    try {
+      outputStream = openOutputStream(outputFile);
+      convert(toDom(inputFile), new OutputStreamWriter(outputStream), config);
+    } finally {
+      closeQuietly(outputStream);
+    }
   }
 
   private void deleteTemporaryFiles(File joinedFile, Configuration config) {

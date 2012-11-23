@@ -86,5 +86,10 @@ public interface Configuration {
   Multimap<String, String> getTransitionRules();
   Configuration stylingRule(String selector, String rule);
   Multimap<String, String> getStylingRules();
+
+  // Debug
+  boolean isSplitOutput();
+  Configuration splitOutput();
+  Configuration splitOutput(boolean state);
   
 }

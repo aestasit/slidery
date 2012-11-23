@@ -46,6 +46,7 @@ public class SimpleConfiguration implements Configuration {
 
   private boolean                  notesIncluded   = true;
   private boolean                  listIncremented = true;
+  private boolean                  splitOutput = false;
 
   public SimpleConfiguration inputFile(File inputFile) {
     inputFiles.add(inputFile);
@@ -282,6 +283,20 @@ public class SimpleConfiguration implements Configuration {
 
   public Multimap<String, String> getStylingRules() {
     return Multimaps.unmodifiableMultimap(stylingRules);
+  }
+
+  public boolean isSplitOutput() {
+    return splitOutput;
+  }
+
+  public Configuration splitOutput() {
+    splitOutput = true;
+    return this;
+  }
+
+  public Configuration splitOutput(boolean state) {
+    splitOutput = state;
+    return this;
   }
 
 }
