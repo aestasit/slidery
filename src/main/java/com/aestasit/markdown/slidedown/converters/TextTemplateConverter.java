@@ -52,7 +52,7 @@ import org.jsoup.select.Elements;
  * <ul>
  * <li>{@link #expandBinding(HashMap, Document, Configuration)} method allows adding more binding variables available to
  * the template.</li>
- * <li>{@link #transformDocument(Document)} method allows modifying <i>DOM</i> tree of the slides document.</li>
+ * <li>{@link #transformDocument(Document, Configuration)} method allows modifying <i>DOM</i> tree of the slides document.</li>
  * </ul>
  * 
  * @author Andrey Adamovich
