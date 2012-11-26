@@ -2,7 +2,7 @@ package com.aestasit.markdown.visitors;
 
 import static com.aestasit.markdown.Markdown.logAst;
 import static com.aestasit.markdown.Markdown.toAst;
-import static com.aestasit.markdown.slidedown.Slidedown.DEFAULT_PEGDOWN_OPTIONS;
+import static com.aestasit.markdown.slidery.Slidery.DEFAULT_PEGDOWN_OPTIONS;
 
 import java.io.IOException;
 

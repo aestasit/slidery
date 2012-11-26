@@ -15,15 +15,15 @@ uploadArchives {
 
       pom.project {
 
-        name 'Slidedown'
+        name 'Slidery'
         packaging 'jar'
-        description 'Slidedown is a Java library to support creation of presentation slides written in Markdown.'
-        url 'https://github.com/aestasit/slidedown'
+        description 'Slidery is a Java library to support creation of presentation slides written in Markdown.'
+        url 'https://github.com/aestasit/slidery'
     
         scm {
-          url 'scm:git@github.com:aestasit/slidedown'
-          connection 'scm:git@github.com:aestasit/slidedown'
-          developerConnection 'scm:git@github.com:aestasit/slidedown'
+          url 'scm:git@github.com:aestasit/slidery'
+          connection 'scm:git@github.com:aestasit/slidery'
+          developerConnection 'scm:git@github.com:aestasit/slidery'
         }
     
         licenses {

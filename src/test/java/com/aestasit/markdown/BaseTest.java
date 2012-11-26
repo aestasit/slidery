@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  */
 public class BaseTest {
 
-  protected Logger log = LoggerFactory.getLogger("com.aestasit.markdown.slidedown.tests");
+  protected Logger log = LoggerFactory.getLogger("com.aestasit.markdown.slidery.tests");
 
   protected static InputStream testData(String fileName) throws IOException {
     return Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);

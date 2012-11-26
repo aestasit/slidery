@@ -1,7 +1,7 @@
-Slidedown
+Introduction
 =====================
 
-Slidedown is a pure-Java library to support creation of presentation slides written in Markdown format.
+Slidery is a pure-Java library to support creation of presentation slides written in Markdown format.
 
 Getting started
 ======================

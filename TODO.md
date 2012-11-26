@@ -8,7 +8,7 @@
  * switch for enabling in word empasising
  * preserve ordered list numbers
 
-### Slidedown features:
+### Slidery features:
 
  * support slide layout detection
  * support titleless slides
