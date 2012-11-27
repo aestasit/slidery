@@ -21,6 +21,7 @@ public interface Configuration {
   // Mark-down input files
   Collection<File> getInputFiles();
   Configuration inputFile(File inputFile);
+  Configuration inputFiles(Collection<File> inputFiles);
   Charset getInputEncoding();
   Configuration encoding(String encoding);
   Configuration encoding(Charset encoding);
@@ -77,9 +78,9 @@ public interface Configuration {
   String getFontColor();
   String getColor(String name);
   
-  // Custom properties
-  String getProperty(String name);
-  Configuration property(String name, String value);
+  // Custom settings
+  String getOption(String name);
+  Configuration option(String name, String value);
 
   // Rules
   Configuration transitionRule(String selector, String rule);

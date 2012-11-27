@@ -33,6 +33,7 @@ public class BaseConverterTest extends BaseTest {
         .date(createDate())
         .logo(classpath("LOGO_300dpi.png"))
         .includeNotes()
+        .option("test", "true")
         .incrementalLists()
         .splitOutput()
         .encoding("UTF-8");

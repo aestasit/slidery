@@ -19,7 +19,7 @@ import com.google.common.collect.Multimaps;
  * Straight-forward in-memory implementation of the {@link Configuration} interface.
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public class SimpleConfiguration implements Configuration {
 
@@ -27,7 +27,7 @@ public class SimpleConfiguration implements Configuration {
   private Collection<File>         inputFiles      = new LinkedHashSet<File>();
   private Charset                  inputEncoding   = Charset.forName("UTF-8");
   private Multimap<String, File>   staticFiles     = HashMultimap.create();
-  private Map<String, String>      properties      = new HashMap<String, String>();
+  private Map<String, String>      options         = new HashMap<String, String>();
   private File                     outputFile;
 
   private String                   author;
@@ -46,10 +46,15 @@ public class SimpleConfiguration implements Configuration {
 
   private boolean                  notesIncluded   = true;
   private boolean                  listIncremented = true;
-  private boolean                  splitOutput = false;
+  private boolean                  splitOutput     = false;
 
   public SimpleConfiguration inputFile(File inputFile) {
     inputFiles.add(inputFile);
+    return this;
+  }
+
+  public SimpleConfiguration inputFiles(Collection<File> inputFiles) {
+    this.inputFiles.addAll(inputFiles);
     return this;
   }
 
@@ -86,8 +91,8 @@ public class SimpleConfiguration implements Configuration {
     return this;
   }
 
-  public SimpleConfiguration property(String name, String value) {
-    properties.put(name, value);
+  public SimpleConfiguration option(String name, String value) {
+    options.put(name, value);
     return this;
   }
 
@@ -117,8 +122,8 @@ public class SimpleConfiguration implements Configuration {
     return inputEncoding;
   }
 
-  public String getProperty(String name) {
-    return properties.get(name);
+  public String getOption(String name) {
+    return options.get(name);
   }
 
   public Configuration author(String name) {
