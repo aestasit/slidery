@@ -207,6 +207,11 @@ public class SimpleConfiguration implements Configuration {
     return this;
   }
 
+  public Configuration includeNotes(boolean state) {
+    notesIncluded = state;
+    return this;
+  }
+
   public Configuration excludeNotes() {
     notesIncluded = false;
     return this;

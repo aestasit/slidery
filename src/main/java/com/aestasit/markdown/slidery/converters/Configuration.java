@@ -62,6 +62,7 @@ public interface Configuration {
   // Notes
   boolean notesIncluded();
   Configuration includeNotes();
+  Configuration includeNotes(boolean state);  
   Configuration excludeNotes();
 
   // Styling
