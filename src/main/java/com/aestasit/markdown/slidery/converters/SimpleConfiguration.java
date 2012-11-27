@@ -63,8 +63,18 @@ public class SimpleConfiguration implements Configuration {
     return this;
   }
 
+  public SimpleConfiguration staticFiles(Collection<File> staticFiles) {
+    this.staticFiles.putAll(".", staticFiles);
+    return this;
+  }
+
   public SimpleConfiguration staticFile(String relativePath, File staticFile) {
     staticFiles.put(relativePath, staticFile);
+    return this;
+  }
+
+  public SimpleConfiguration staticFiles(String relativePath, Collection<File> staticFiles) {
+    this.staticFiles.putAll(relativePath, staticFiles);
     return this;
   }
 

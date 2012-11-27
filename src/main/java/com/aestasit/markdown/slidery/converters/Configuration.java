@@ -33,7 +33,9 @@ public interface Configuration {
   // Static template or input files
   Multimap<String, File> getStaticFiles();
   Configuration staticFile(File staticFile);
+  Configuration staticFiles(Collection<File> staticFiles);  
   Configuration staticFile(String relativePath, File staticFile);
+  Configuration staticFiles(String relativePath, Collection<File> staticFiles);  
 
   // Output
   File getOutputFile();
