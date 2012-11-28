@@ -95,7 +95,7 @@ public abstract class TextTemplateConverter extends BaseConverter {
     binding.put("author", config.getAuthor());
     binding.put("company", config.getCompany());
     binding.put("description", defaultIfNull(config.getDescription(), binding.get("title")));
-    binding.put("date", new SimpleDateFormat("dd-mm-yyyy").format(config.getDate()));
+    binding.put("date", new SimpleDateFormat("dd-MM-yyyy").format(config.getDate()));
     binding.put("backgroundColor", config.getBackgroundColor());
     binding.put("fontColor", config.getFontColor());
     binding.put("fontName", config.getFontName());

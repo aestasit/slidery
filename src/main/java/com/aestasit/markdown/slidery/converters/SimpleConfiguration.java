@@ -5,6 +5,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -14,6 +15,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
+import com.google.common.collect.Ordering;
 
 /**
  * Straight-forward in-memory implementation of the {@link Configuration} interface.
@@ -54,7 +56,7 @@ public class SimpleConfiguration implements Configuration {
   }
 
   public SimpleConfiguration inputFiles(Collection<File> inputFiles) {
-    this.inputFiles.addAll(inputFiles);
+    this.inputFiles.addAll(Ordering.from(fileNames()).sortedCopy(inputFiles));
     return this;
   }
 
@@ -317,6 +319,16 @@ public class SimpleConfiguration implements Configuration {
   public Configuration splitOutput(boolean state) {
     splitOutput = state;
     return this;
+  }
+
+  private static FileNameComparator fileNames() {
+    return new FileNameComparator();
+  }
+
+  private final static class FileNameComparator implements Comparator<File> {
+    public int compare(File o1, File o2) {
+      return o1.getName().compareTo(o2.getName());
+    }
   }
 
 }
