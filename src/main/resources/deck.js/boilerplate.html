@@ -18,6 +18,11 @@
 	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
 	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
 
+	<!-- TODO insert logo only if file is known -->
+	<% if (logoFile) { %>
+	<link rel="stylesheet" href="extensions/scale/deck.logo.css">
+	<% } %>
+
 	<!-- Style theme. More available in /themes/style/ or create your own. -->
 	<link rel="stylesheet" href="themes/style/${theme}.css">
 	
@@ -63,6 +68,11 @@
 <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
 <a href="#" class="deck-next-link" title="Next">&#8594;</a>
 
+<!-- deck.logo snippet -->
+<% if (logoFile) { %>
+<p class="deck-logo"></p>
+<% } %>
+
 <!-- deck.status snippet -->
 <p class="deck-status">
 	<span class="deck-status-current"></span>
@@ -89,7 +99,6 @@
 <script src="core/deck.core.js"></script>
 
 <!-- Extension JS files. Add or remove as needed. -->
-<script src="core/deck.core.js"></script>
 <script src="extensions/hash/deck.hash.js"></script>
 <script src="extensions/menu/deck.menu.js"></script>
 <script src="extensions/goto/deck.goto.js"></script>
@@ -102,6 +111,9 @@
 	\$(function() {
 		\$.deck('.slide');
 	});
+	<% if (logoFile) { %>
+	\$('.deck-logo').css('background-image', 'url(images/' + <%= logoFile %> + ')');
+	<% } %>
 </script>
 </body>
 </html>

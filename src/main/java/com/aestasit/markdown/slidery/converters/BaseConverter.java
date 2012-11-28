@@ -60,6 +60,9 @@ public abstract class BaseConverter implements Converter {
   public void render(Configuration config) throws IOException {
     beforeStart(config);
     config.validate();
+    if (config.getLogo() != null) {
+      config.staticFile("images", config.getLogo());
+    }
     copyStaticFiles(config.getStaticFiles(), createOutputDirectory(config));
     createOutput(joinInputFiles(config), config);
   }
