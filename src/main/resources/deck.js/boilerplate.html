@@ -19,7 +19,6 @@
 	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
 	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
 
-	<!-- TODO insert logo only if file is known -->
 	<% if (logoFile) { %>
 	<link rel="stylesheet" href="extensions/scale/deck.logo.css">
 	<% } %>
@@ -41,11 +40,10 @@
 <% if (author || company) { %>
   <!-- First slide -->  
   <section class="title slide">
-     <h1>${title}</h1>
-     <p>${description}</p>
-     <p>${author}</p>
-     <p>${company}</p>     
-     <p>${date}</p>
+     <header>${title}</header>
+     <address class="author">By ${author}</address>
+     <address class="company">${company}</address>     
+     <time>${date}</time>
   </section>
 <% } %>  
 
