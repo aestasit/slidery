@@ -19,7 +19,6 @@
 
  * better exception handling and error messages in converter factory
 
- * add base shower converter
  * add base fathom.js converter http://markdalgleish.com/projects/fathom/
  * add base google/io converter 
  * add base csss converter 

@@ -37,6 +37,7 @@ public class DeckJSConverter extends TextTemplateConverter {
     if (config.getLogo() != null) {
       addCssExtension(config, "logo");
     }
+    addCssExtension(config, "title");
 
     if (isBlank(config.getTheme())) {
       config.theme("web-2.0");
@@ -48,13 +49,17 @@ public class DeckJSConverter extends TextTemplateConverter {
   }
 
   private void addExtension(Configuration config, String extension) {
-    String basePath = "deck.js/extensions/" + extension + "/deck." + extension;
+    String basePath = baseExtensionPath(extension);
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
     config.staticFile("extensions/" + extension, classpath(basePath + ".js"));
   }
 
+  private String baseExtensionPath(String extension) {
+    return "deck.js/extensions/" + extension + "/deck." + extension;
+  }
+
   private void addCssExtension(Configuration config, String extension) {
-    String basePath = "deck.js/extensions/" + extension + "/deck." + extension;
+    String basePath = baseExtensionPath(extension);
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
   }
 

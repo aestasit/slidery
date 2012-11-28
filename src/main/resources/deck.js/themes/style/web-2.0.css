@@ -30,10 +30,10 @@
 .deck-container > .slide .deck-child-current {
   opacity: 1;
 }
-.deck-container .slide h1, .deck-container .slide h2, .deck-container .slide h3, .deck-container .slide h4, .deck-container .slide h5, .deck-container .slide h6 {
+.deck-container .slide h1, .deck-container .slide header, .deck-container .slide h2, .deck-container .slide h3, .deck-container .slide h4, .deck-container .slide h5, .deck-container .slide h6 {
   font-family: "Hoefler Text", Constantia, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
-.deck-container .slide h1 {
+.deck-container .slide h1, .deck-container .slide header {
   color: #08455f;
 }
 .deck-container .slide h2 {

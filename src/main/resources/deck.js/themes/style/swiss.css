@@ -6,7 +6,7 @@
 .deck-container .slide {
   background: #fff;
 }
-.deck-container .slide h1 {
+.deck-container .slide h1, .deck-container .slide header  {
   color: #000;
 }
 .deck-container .slide h2 {

@@ -7,7 +7,7 @@
 .deck-container .slide {
   background: #000;
 }
-.deck-container .slide h1 {
+.deck-container .slide h1, .deck-container .slide header {
   color: #0af;
   font-weight: normal;
   font-weight: 100;

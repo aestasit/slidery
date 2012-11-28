@@ -1,0 +1,16 @@
+.slide header {
+  font-size: 4.5em;
+  font-weight: bold;  
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  max-height: 100%;
+}
+
+.slide address {
+  font-size: 1.5em;
+  font-style: italic;
+  text-align: right;
+  max-height: 100%;
+}
+
