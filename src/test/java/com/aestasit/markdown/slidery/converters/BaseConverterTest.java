@@ -31,7 +31,7 @@ public class BaseConverterTest extends BaseTest {
         .title("Test presentation")
         .description("Conversion library testing")
         .date(createDate())
-        .logo(classpath("LOGO_300dpi.png"))
+        .logo(classpath("LOGO_FULL_352x103.png"))
         .includeNotes()
         .option("test", "true")
         .incrementalLists()
