@@ -12,12 +12,13 @@
 
  * support slide layout detection
  * support titleless slides
- * implement echo visitor
+
  * finish text extractor
  * finish logging visitor
+
  * add support for special characters e.g. dash, elippsis
 
- * better exception handling and error messages in converter factory
+ * better exception handling and error messages in converters and factory
 
  * add base fathom.js converter http://markdalgleish.com/projects/fathom/
  * add base google/io converter 

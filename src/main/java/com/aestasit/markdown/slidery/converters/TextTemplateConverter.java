@@ -114,9 +114,13 @@ public abstract class TextTemplateConverter extends BaseConverter {
     binding.put("theme", config.getTheme());
     if (config.getLogo() != null) {
       binding.put("logoFile", config.getLogo().getName());
+    } else {
+      binding.put("logoFile", null);
     }
     if (config.getOutputFile() != null) {
       binding.put("outputFile", config.getOutputFile().getName());
+    } else {
+      binding.put("outputFile", null);
     }
   }
 
