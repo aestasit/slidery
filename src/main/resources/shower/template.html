@@ -35,10 +35,11 @@
 			</header>
 		</section>
 	</div></div>	
+	<% def index = 1 %>
     <% slides.each { slide -> %>
     <% def slideContent = slide.select("div")?.first()?.html() %>
     <% def slideTitle = slide.select("header")?.first()?.text() %>   
-    <div class="slide" id="${slideTitle.replaceAll('[ +!]','_').toLowerCase()}"><div>
+    <div class="slide" id="${index++}"><div>
         <section>
 			<header>
 				<h2>${slideTitle}</h2>
