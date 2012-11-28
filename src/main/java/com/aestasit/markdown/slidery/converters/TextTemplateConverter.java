@@ -145,18 +145,20 @@ public abstract class TextTemplateConverter extends BaseConverter {
         className = "java";
       }
       Renderer renderer = XhtmlRendererFactory.getRenderer(className);
-      try {
-        renderer.highlight("slidery", input, out, encoding.name(), true);
-        code.html(new String(out.toByteArray(), encoding));
-        code.select("br").remove();
-        removeComments(code);
-        code.html(code.html().trim());
-        Element parent = code.parent();
-        if (parent.tagName() == "pre") {
-          parent.addClass("code");
+      if (renderer != null) {
+        try {
+          renderer.highlight("slidery", input, out, encoding.name(), true);
+          code.html(new String(out.toByteArray(), encoding));
+          code.select("br").remove();
+          removeComments(code);
+          code.html(code.html().trim());
+          Element parent = code.parent();
+          if (parent.tagName() == "pre") {
+            parent.addClass("code");
+          }
+        } catch (IOException e) {
+          // TODO: Handle exception
         }
-      } catch (IOException e) {
-        // TODO: Handle exception
       }
     }
   }
@@ -166,7 +168,7 @@ public abstract class TextTemplateConverter extends BaseConverter {
     for (Node child : parent.childNodes()) {
       if (child.nodeName().equals("#comment")) {
         nodesToRemove.add(child);
-      }            
+      }
     }
     for (Node node : nodesToRemove) {
       node.remove();
