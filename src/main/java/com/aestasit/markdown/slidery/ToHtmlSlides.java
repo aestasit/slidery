@@ -53,9 +53,11 @@ import com.google.common.base.Preconditions;
 import static com.aestasit.markdown.slidery.ToHtmlSlides.SlideComponent.*;
 
 /**
- * <p>{@link Visitor} pattern implementation that walks through <i>AST</i> created 
- *    by <a href="https://github.com/sirthias/pegdown">Pegdown</a> parsing library 
- *    and produces structured output with the help of <i>HTML5</i> tags:</p>
+ * <p>
+ * {@link Visitor} pattern implementation that walks through <i>AST</i> created by <a
+ * href="https://github.com/sirthias/pegdown">Pegdown</a> parsing library and produces structured output with the help
+ * of <i>HTML5</i> tags:
+ * </p>
  * 
  * <pre>
  *   &lt;body> 
@@ -65,14 +67,17 @@ import static com.aestasit.markdown.slidery.ToHtmlSlides.SlideComponent.*;
  *       &lt;aside>   ...slide notes...     &lt;/aside>
  *     &lt;/section>
  *     ...
- *   &lt;/body>    
+ *   &lt;/body>
  * </pre>
- *        
- * <p>Code of this class is largely based on the code of <a href="https://raw.github.com/sirthias/pegdown/master/src/main/java/org/pegdown/ToHtmlSerializer.java">ToHtmlSerializer</a> 
- * from <a href="https://github.com/sirthias/pegdown">Pegdown</a> parser library.</p>  
+ * 
+ * <p>
+ * Code of this class is largely based on the code of <a
+ * href="https://raw.github.com/sirthias/pegdown/master/src/main/java/org/pegdown/ToHtmlSerializer.java"
+ * >ToHtmlSerializer</a> from <a href="https://github.com/sirthias/pegdown">Pegdown</a> parser library.
+ * </p>
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public class ToHtmlSlides extends BaseVisitor implements Visitor {
 
@@ -143,7 +148,10 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
       endSlide();
       startSlide();
       printer.println();
-      printTag(node, "header");
+      String headerText = printChildrenToString(node);
+      if (!"-".equals(headerText.trim())) {
+        printTag(node, "header");
+      }
       startSlideContent();
     } else {
       printer.println();
@@ -260,7 +268,7 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
   public void visit(QuotedNode node) {
     switch (node.getType()) {
       case DoubleAngle:
-        printer.print("\""); // TODO: "&laquo;" 
+        printer.print("\""); // TODO: "&laquo;"
         visitChildren(node);
         printer.print("\""); // TODO: "&raquo;"
         break;
@@ -270,7 +278,7 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
         printer.print("\""); // TODO: &rdquo;
         break;
       case Single:
-        printer.print("'"); // TODO: &lsquo; 
+        printer.print("'"); // TODO: &lsquo;
         visitChildren(node);
         printer.print("'"); // TODO: &rsquo;
         break;

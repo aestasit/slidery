@@ -55,12 +55,14 @@
 <% slides.each { slide -> %>
   <section class="slide">
      <% def slideContent = slide.select("div")?.first()?.html() %>
-     <% def slideTitle = slide.select("header")?.first()?.text() %>     
-     <% if (slideContent?.trim()) { %>
-       <h2><%= slideTitle %></h2>
-     <% } else { %>  
-       <h1><%= slideTitle %></h1>     
-     <% } %>         
+     <% def slideTitle = slide.select("header")?.first()?.text() %>
+     <% if (slideTitle?.trim()) { %>      
+       <% if (slideContent?.trim()) { %>
+         <h2><%= slideTitle %></h2>
+       <% } else { %>  
+         <h1><%= slideTitle %></h1>     
+       <% } %>
+     <% } %>                       
      <%= slideContent %>
   </section>
 <% } %>
