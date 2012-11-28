@@ -328,7 +328,6 @@ public class ToHtmlSlides extends BaseVisitor implements Visitor {
         printer.print("-"); // TODO: &ndash;
         break;
       case HRule:
-        System.out.println(node.toString());
         startSlideNotes();
         break;
       case Linebreak:
