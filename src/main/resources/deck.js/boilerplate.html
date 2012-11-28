@@ -41,8 +41,12 @@
   <!-- First slide -->  
   <section class="slide">
      <header>${title}</header>
+     <% if (author) { %>   
      <address class="author">By ${author}</address>
-     <address class="company">${company}</address>     
+     <% } %>
+     <% if (company) { %>
+     <address class="company">${company}</address>
+     <% } %>     
      <address><time>${date}</time></address>
   </section>
 <% } %>  
