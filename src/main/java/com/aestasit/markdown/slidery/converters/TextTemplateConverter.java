@@ -1,20 +1,30 @@
 package com.aestasit.markdown.slidery.converters;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
+import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import groovy.text.SimpleTemplateEngine;
 import groovy.text.Template;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import static org.apache.commons.lang3.ObjectUtils.*;
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+
+import com.uwyn.jhighlight.renderer.Renderer;
+import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
 /**
  * <p>
@@ -52,7 +62,8 @@ import org.jsoup.select.Elements;
  * <ul>
  * <li>{@link #expandBinding(HashMap, Document, Configuration)} method allows adding more binding variables available to
  * the template.</li>
- * <li>{@link #transformDocument(Document, Configuration)} method allows modifying <i>DOM</i> tree of the slides document.</li>
+ * <li>{@link #transformDocument(Document, Configuration)} method allows modifying <i>DOM</i> tree of the slides
+ * document.</li>
  * </ul>
  * 
  * @author Andrey Adamovich
@@ -118,6 +129,47 @@ public abstract class TextTemplateConverter extends BaseConverter {
       for (Element notesElement : slidesDocument.select("aside")) {
         notesElement.remove();
       }
+    }
+    if ("true".equals(config.getOption("renderSyntaxHighlighting"))) {
+      renderSyntaxHighlightingHtml(slidesDocument, config);
+    }
+  }
+
+  private void renderSyntaxHighlightingHtml(final Document slidesDocument, final Configuration config) {
+    for (Element code : slidesDocument.select("code")) {
+      Charset encoding = config.getInputEncoding();
+      ByteArrayInputStream input = new ByteArrayInputStream(code.text().getBytes(encoding));
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
+      String className = code.className();
+      if (StringUtils.isBlank(className)) {
+        className = "java";
+      }
+      Renderer renderer = XhtmlRendererFactory.getRenderer(className);
+      try {
+        renderer.highlight("slidery", input, out, encoding.name(), true);
+        code.html(new String(out.toByteArray(), encoding));
+        code.select("br").remove();
+        removeComments(code);
+        code.html(code.html().trim());
+        Element parent = code.parent();
+        if (parent.tagName() == "pre") {
+          parent.addClass("code");
+        }
+      } catch (IOException e) {
+        // TODO: Handle exception
+      }
+    }
+  }
+
+  private void removeComments(Node parent) {
+    List<Node> nodesToRemove = new ArrayList<Node>();
+    for (Node child : parent.childNodes()) {
+      if (child.nodeName().equals("#comment")) {
+        nodesToRemove.add(child);
+      }            
+    }
+    for (Node node : nodesToRemove) {
+      node.remove();
     }
   }
 

@@ -38,6 +38,7 @@ public class DeckJSConverter extends TextTemplateConverter {
       addCssExtension(config, "logo");
     }
     addCssExtension(config, "title");
+    addCssExtension(config, "highlight");
 
     if (isBlank(config.getTheme())) {
       config.theme("web-2.0");

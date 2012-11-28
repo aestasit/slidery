@@ -38,6 +38,7 @@ public class BaseTest {
         "04_slide_notes.md",
         "05_table_slides.md",
         "06_slides_with_links.md",        
+        "07_nested_lists.md",
     };
   }
 

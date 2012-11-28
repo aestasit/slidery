@@ -36,6 +36,7 @@ public class BaseConverterTest extends BaseTest {
         .option("test", "true")
         .incrementalLists()
         .splitOutput()
+        .option("renderSyntaxHighlighting", "true")
         .encoding("UTF-8");
     for(String filePath: allTestFiles()) {
       config.inputFile(classpath(filePath));
