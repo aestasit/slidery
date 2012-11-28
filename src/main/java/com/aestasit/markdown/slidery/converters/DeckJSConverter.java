@@ -33,10 +33,15 @@ public class DeckJSConverter extends TextTemplateConverter {
     addExtension(config, "hash");
     addExtension(config, "goto");
     addExtension(config, "menu");
+    
+    if (config.getLogo() != null) {
+      addCssExtension(config, "logo");
+    }
 
     if (isBlank(config.getTheme())) {
       config.theme("web-2.0");
     }
+    
     config.staticFile("themes/style", classpath("deck.js/themes/style/" + config.getTheme() + ".css"));
     config.staticFile("themes/transition", classpath("deck.js/themes/transition/horizontal-slide.css"));
 
@@ -46,6 +51,11 @@ public class DeckJSConverter extends TextTemplateConverter {
     String basePath = "deck.js/extensions/" + extension + "/deck." + extension;
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
     config.staticFile("extensions/" + extension, classpath(basePath + ".js"));
+  }
+
+  private void addCssExtension(Configuration config, String extension) {
+    String basePath = "deck.js/extensions/" + extension + "/deck." + extension;
+    config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
   }
 
   protected void transformDocument(Document slidesDocument, Configuration config) {

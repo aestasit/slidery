@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="core/deck.core.css">
 	
 	<!-- Extension CSS files go here. Remove or add as needed. -->
+	<link rel="stylesheet" href="extensions/title/deck.title.css">	
 	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
 	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
 	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
@@ -37,14 +38,16 @@
 
 <!-- Begin slides. Just make elements with a class of slide. -->
 
-  <!-- First slide -->
-  <section class="slide">
+<% if (author || company) { %>
+  <!-- First slide -->  
+  <section class="title slide">
      <h1>${title}</h1>
-     <!-- TODO: p>${description}</p-->
-     <!-- TODO: p>${author}</p-->
-     <!-- TODO: p>${company}</p-->     
-     <!-- TODO: p>${date}</p-->
+     <p>${description}</p>
+     <p>${author}</p>
+     <p>${company}</p>     
+     <p>${date}</p>
   </section>
+<% } %>  
 
 <% slides.each { slide -> %>
   <section class="slide">
@@ -112,7 +115,7 @@
 		\$.deck('.slide');
 	});
 	<% if (logoFile) { %>
-	\$('.deck-logo').css('background-image', 'url(images/' + <%= logoFile %> + ')');
+	\$('.deck-logo').css('background-image', 'url("images/' + <%= logoFile %> + '")');
 	<% } %>
 </script>
 </body>
