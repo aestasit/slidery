@@ -1,46 +1,40 @@
+apply plugin: 'maven'
 
 repositories {
   mavenCentral()
+  maven {
+    url "https://oss.sonatype.org/content/repositories/snapshots/"
+  }
 }
 
 uploadArchives {
-  repositories {
-    mavenDeployer {
-
-      name = "Sonatype OSS Snapshots"
-
-      repository(url: repositoryUrl) {
-        authentication(userName: repositoryUsername, password: repositoryPassword)
-      }
-
-      pom.project {
-
-        name 'Slidery'
-        packaging 'jar'
-        description 'Slidery is a Java library to support creation of presentation slides written in Markdown.'
-        url 'https://github.com/aestasit/slidery'
-    
-        scm {
-          url 'scm:git@github.com:aestasit/slidery'
-          connection 'scm:git@github.com:aestasit/slidery'
-          developerConnection 'scm:git@github.com:aestasit/slidery'
+  repositories.mavenDeployer {
+    name = "snapshots" 
+    repository(url: ossSnapshotRepositoryUrl) {
+      authentication(userName: ossSnapshotRepositoryUserName, password: ossSnapshotRepositoryPassword)
+    }
+    pom.project {
+      name 'Slidery'
+      packaging 'jar'
+      description 'Slidery is a Java library to support creation of presentation slides written in Markdown.'
+      url 'https://github.com/aestasit/slidery'    
+      scm {
+        url 'scm:git@github.com:aestasit/slidery'
+        connection 'scm:git@github.com:aestasit/slidery'
+        developerConnection 'scm:git@github.com:aestasit/slidery'
+      }                                            
+      licenses {
+        license {
+          name 'The Apache Software License, Version 2.0'
+          url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          distribution 'repo'
         }
-    
-        licenses {
-          license {
-            name 'The Apache Software License, Version 2.0'
-            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            distribution 'repo'
-          }
+      }    
+      developers {
+        developer {
+          id 'aadamovich'
+          name 'Andrey Adamovich'
         }
-    
-        developers {
-          developer {
-            id 'aadamovich'
-            name 'Andrey Adamovich'
-          }
-        }
-
       }
     }
   }
