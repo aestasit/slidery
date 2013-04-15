@@ -5,7 +5,7 @@ apply plugin: 'maven'
 
 apply from: 'repos.gradle'
 
-version = '0.3-SNAPSHOT'
+version = '0.4-SNAPSHOT'
 group = 'com.aestasit.markdown'
 
 

@@ -16,7 +16,7 @@ public interface ConfigurationBuilder {
 
   void validate() throws IllegalStateException;
 
-  ConfigurationBuilder configuration(Configuration config);
+  ConfigurationBuilder configuration(ConfigurationReader config);
 
   ConfigurationBuilder clear();
 

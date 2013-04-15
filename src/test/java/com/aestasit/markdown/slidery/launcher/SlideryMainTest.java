@@ -5,6 +5,8 @@ import org.junit.Test;
 import com.aestasit.markdown.BaseTest;
 
 /**
+ * Slidery launcher test.
+ * 
  * @author Andrey Adamovich
  * 
  */
@@ -13,7 +15,6 @@ public class SlideryMainTest extends BaseTest {
   @Test
   public void testMain() throws Exception {
     SlideryMain.main(params("", "", ""));
-    SlideryMain.main(paramString("--inputFile="));
   }
 
   private String[] params(final String... params) {

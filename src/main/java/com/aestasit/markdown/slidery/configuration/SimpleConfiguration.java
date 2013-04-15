@@ -61,7 +61,7 @@ public class SimpleConfiguration implements Configuration {
   }
 
   @Override
-  public ConfigurationBuilder configuration(final Configuration config) {
+  public ConfigurationBuilder configuration(final ConfigurationReader config) {
     author(config.getAuthor());
     backgroundColor(config.getBackgroundColor());
     // TODO: config.getColor(name)
@@ -80,7 +80,7 @@ public class SimpleConfiguration implements Configuration {
     includeNotes(config.notesIncluded());
     incrementalLists(config.listsIncremented());
     if (config.getInputFiles() != null) {
-      config.inputFiles(config.getInputFiles());
+      inputFiles(config.getInputFiles());
     }
     logo(config.getLogo());
     // TODO: option(name, value)
@@ -456,18 +456,6 @@ public class SimpleConfiguration implements Configuration {
     return this;
   }
 
-  private static FileNameComparator fileNames() {
-    return new FileNameComparator();
-  }
-
-  private final static class FileNameComparator implements Comparator<File> {
-
-    @Override
-    public int compare(final File o1, final File o2) {
-      return o1.getName().compareTo(o2.getName());
-    }
-  }
-
   @Override
   public ConfigurationBuilder inputFile(final File inputFile, final Transition transition) {
     // TODO Auto-generated method stub
@@ -544,6 +532,18 @@ public class SimpleConfiguration implements Configuration {
   public Map<String, String> getOptions() {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  private static FileNameComparator fileNames() {
+    return new FileNameComparator();
+  }
+
+  private final static class FileNameComparator implements Comparator<File> {
+
+    @Override
+    public int compare(final File o1, final File o2) {
+      return o1.getName().compareTo(o2.getName());
+    }
   }
 
 }
