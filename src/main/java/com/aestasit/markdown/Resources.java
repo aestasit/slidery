@@ -19,8 +19,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Utility methods to convert different content sources (e.g. class path references, <i>URL</i>s)
- * to existing file objects on the local file system .
+ * Utility methods to convert different content sources (e.g. class path
+ * references, <i>URL</i>s) to existing file objects on the local file system.
  * 
  * @author Andrey Adamovich
  * 
@@ -79,6 +79,7 @@ public final class Resources {
 
   private static List<File> listFiles(final File dir, final String pattern) {
     return Arrays.asList(dir.listFiles(new FilenameFilter() {
+      @Override
       public boolean accept(final File dir, final String name) {
         return name.matches(pattern);
       }
