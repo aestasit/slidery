@@ -22,6 +22,8 @@ import java.util.Map.Entry;
 import static org.apache.commons.io.FilenameUtils.*;
 import org.jsoup.nodes.Document;
 
+import com.aestasit.markdown.slidery.configuration.Configuration;
+import com.aestasit.markdown.slidery.configuration.ConfigurationBuilder;
 import com.google.common.collect.Multimap;
 
 /**
@@ -141,7 +143,7 @@ public abstract class BaseConverter implements Converter {
   protected void beforeStart(Configuration config) {
   }
 
-  protected void beforeConversion(File inputFile, Configuration config) {
+  protected void beforeConversion(File inputFile, ConfigurationBuilder config) {
   }
 
   protected abstract void convert(Writer writer, Document slidesDocument, Configuration config) throws IOException;

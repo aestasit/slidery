@@ -6,75 +6,116 @@ import static com.google.common.io.Files.createTempDir;
 import static org.apache.commons.io.FileUtils.openOutputStream;
 import static org.apache.commons.io.FileUtils.toFile;
 import static org.apache.commons.io.IOUtils.copyLarge;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
- * Utility methods to convert different content sources (e.g. class path references, <i>URL</i>s) 
- * to existing file objects on the local file system . 
+ * Utility methods to convert different content sources (e.g. class path references, <i>URL</i>s)
+ * to existing file objects on the local file system .
  * 
  * @author Andrey Adamovich
- *
+ * 
  */
 public final class Resources {
 
-  public static File file(String filePath) {
-    checkNotNull(filePath, "File path is not specified!");
-    checkArgument(!isEmpty(filePath), "File path is not specified!");
+  public static File file(final String filePath) {
+    checkPath(filePath);
     return new File(filePath);
   }
 
-  public static File classpath(String filePath) {
-    checkNotNull(filePath, "File path is not specified!");
-    checkArgument(!isEmpty(filePath), "File path is not specified!");
-    File tempFile = tempFile(filePath);
+  public static Collection<File> dir(final String dirPath) {
+    return Arrays.asList(checkDirectory(dirPath).listFiles());
+  }
+
+  public static Collection<File> dir(final File dir) {
+    return Arrays.asList(checkDirectory(dir).listFiles());
+  }
+
+  public static Collection<File> dir(final String dirPath, final String pattern) {
+    return listFiles(checkDirectory(dirPath), pattern);
+  }
+
+  public static Collection<File> dir(final File dir, final String pattern) {
+    return listFiles(checkDirectory(dir), pattern);
+  }
+
+  public static File classpath(final String filePath) {
+    checkPath(filePath);
+    final File tempFile = tempFile(filePath);
     copy(classLoader().getResourceAsStream(filePath), silentOpen(tempFile));
     return tempFile;
   }
 
-  public static File url(URL url) {
+  public static File url(final URL url) {
     checkNotNull(url, "URL is not specified!");
-    File tempFile = tempFile(toFile(url).getName());
+    final File tempFile = tempFile(toFile(url).getName());
     copy(silentOpen(url), silentOpen(tempFile));
     return tempFile;
+  }
+
+  private static void checkPath(final String path) {
+    checkNotNull(path, "Path is not specified!");
+    checkArgument(!isBlank(path), "Path is not specified!");
+  }
+
+  private static File checkDirectory(final String dirPath) {
+    return checkDirectory(file(dirPath));
+  }
+
+  private static File checkDirectory(final File dir) {
+    checkArgument(dir.exists(), "Directory '%s' does not exist!", dir.getPath());
+    checkArgument(dir.isDirectory(), "Path '%s' is not a directory!", dir.getPath());
+    return dir;
+  }
+
+  private static List<File> listFiles(final File dir, final String pattern) {
+    return Arrays.asList(dir.listFiles(new FilenameFilter() {
+      public boolean accept(final File dir, final String name) {
+        return name.matches(pattern);
+      }
+    }));
   }
 
   private static ClassLoader classLoader() {
     return Thread.currentThread().getContextClassLoader();
   }
 
-  private static InputStream silentOpen(URL url) {
+  private static InputStream silentOpen(final URL url) {
     try {
       return url.openStream();
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException("Unable to download data from: " + url, e);
     }
   }
 
-  private static OutputStream silentOpen(File file) {
+  private static OutputStream silentOpen(final File file) {
     try {
       checkNotNull(file, "File is not specified!");
       return openOutputStream(file);
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException("Unable to open file!", e);
     }
   }
 
-  private static void copy(InputStream input, OutputStream output) {
+  private static void copy(final InputStream input, final OutputStream output) {
     try {
       copyLarge(input, output);
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException("Unable to copy data!", e);
     }
   }
 
-  private static File tempFile(String filePath) {
-    File tempDir = createTempDir();
+  private static File tempFile(final String filePath) {
+    final File tempDir = createTempDir();
     return new File(tempDir, new File(filePath).getName());
   }
 

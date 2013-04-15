@@ -12,8 +12,8 @@ import java.util.Date;
 import org.junit.Before;
 
 import com.aestasit.markdown.BaseTest;
-import com.aestasit.markdown.slidery.converters.Configuration;
-import com.aestasit.markdown.slidery.converters.SimpleConfiguration;
+import com.aestasit.markdown.slidery.configuration.Configuration;
+import com.aestasit.markdown.slidery.configuration.SimpleConfiguration;
 
 /**
  * @author Andrey Adamovich

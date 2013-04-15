@@ -6,9 +6,11 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import com.aestasit.markdown.slidery.configuration.Configuration;
+import com.aestasit.markdown.slidery.configuration.ConfigurationBuilder;
+
 /**
- * Presentation converter that is based on <a
- * href="http://imakewebthings.com/deck.js/">deck.js</a> framework.
+ * Presentation converter that is based on <a href="http://imakewebthings.com/deck.js/">deck.js</a> framework.
  * 
  * @author Andrey Adamovich
  * 
@@ -17,7 +19,7 @@ public class DeckJSConverter extends TextTemplateConverter {
 
   public static final String CONVERTER_ID = "deck-js";
 
-  protected void beforeStart(Configuration config) {
+  protected void beforeStart(final Configuration config) {
 
     config.templateFile(classpath("deck.js/boilerplate.html"));
 
@@ -33,7 +35,7 @@ public class DeckJSConverter extends TextTemplateConverter {
     addExtension(config, "hash");
     addExtension(config, "goto");
     addExtension(config, "menu");
-    
+
     if (config.getLogo() != null) {
       addCssExtension(config, "logo");
     }
@@ -43,34 +45,42 @@ public class DeckJSConverter extends TextTemplateConverter {
     if (isBlank(config.getTheme())) {
       config.theme("web-2.0");
     }
-    
+
     config.staticFile("themes/style", classpath("deck.js/themes/style/" + config.getTheme() + ".css"));
     config.staticFile("themes/transition", classpath("deck.js/themes/transition/horizontal-slide.css"));
 
   }
 
-  private void addExtension(Configuration config, String extension) {
-    String basePath = baseExtensionPath(extension);
+  private void addExtension(final ConfigurationBuilder config, final String extension) {
+    final String basePath = baseExtensionPath(extension);
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
     config.staticFile("extensions/" + extension, classpath(basePath + ".js"));
   }
 
-  private String baseExtensionPath(String extension) {
+  private String baseExtensionPath(final String extension) {
     return "deck.js/extensions/" + extension + "/deck." + extension;
   }
 
-  private void addCssExtension(Configuration config, String extension) {
-    String basePath = baseExtensionPath(extension);
+  private void addCssExtension(final ConfigurationBuilder config, final String extension) {
+    final String basePath = baseExtensionPath(extension);
     config.staticFile("extensions/" + extension, classpath(basePath + ".css"));
   }
 
-  protected void transformDocument(Document slidesDocument, Configuration config) {
+  protected void transformDocument(final Document slidesDocument, final Configuration config) {
     super.transformDocument(slidesDocument, config);
     if (config.listsIncremented()) {
-      for (Element list : slidesDocument.select("div li")) {
+      for (final Element list : slidesDocument.select("div li")) {
         list.addClass("slide");
       }
     }
+  }
+
+  public String getId() {
+    return CONVERTER_ID;
+  }
+
+  public String getDescription() {
+    return "http://imakewebthings.com/deck.js/";
   }
 
 }

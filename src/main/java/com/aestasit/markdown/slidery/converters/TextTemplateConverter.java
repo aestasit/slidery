@@ -13,6 +13,8 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +25,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
+import com.aestasit.markdown.slidery.configuration.Configuration;
+import com.aestasit.markdown.slidery.configuration.ConfigurationBuilder;
+import com.aestasit.markdown.slidery.configuration.Location;
 import com.uwyn.jhighlight.renderer.Renderer;
 import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
@@ -124,7 +129,7 @@ public abstract class TextTemplateConverter extends BaseConverter {
     }
   }
 
-  protected void expandBinding(final HashMap<String, Object> binding, Document slidesDocument, Configuration config) {
+  protected void expandBinding(final HashMap<String, Object> binding, Document slidesDocument, ConfigurationBuilder config) {
     // Override in subclasses.
   }
 
@@ -205,6 +210,26 @@ public abstract class TextTemplateConverter extends BaseConverter {
       throw new IOException(e);
     }
     return template;
+  }
+
+  public Collection<String> getTransitionIds() {
+    return Collections.<String> emptyList();
+  }
+
+  public String getDefaultTransitionId() {
+    return "default";
+  }
+
+  public Collection<String> getThemeIds() {
+    return Collections.<String> emptyList();
+  }
+
+  public String getDefaultThemeId() {
+    return "default";
+  }
+
+  public Collection<Location> getLocations() {
+    return Collections.<Location> emptyList();
   }
 
 }

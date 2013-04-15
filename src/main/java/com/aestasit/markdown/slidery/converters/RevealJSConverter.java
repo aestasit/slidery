@@ -5,9 +5,10 @@ import static com.aestasit.markdown.Resources.classpath;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import com.aestasit.markdown.slidery.configuration.Configuration;
+
 /**
- * Presentation converter that is based on <a
- * href="http://lab.hakim.se/reveal-js/">reveal.js</a> framework.
+ * Presentation converter that is based on <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> framework.
  * 
  * @author Andrey Adamovich
  * 
@@ -16,7 +17,7 @@ public class RevealJSConverter extends TextTemplateConverter {
 
   public static final String CONVERTER_ID = "reveal-js";
 
-  protected void beforeStart(Configuration config) {
+  protected void beforeStart(final Configuration config) {
 
     config.templateFile(classpath("reveal.js/index.html"));
 
@@ -39,18 +40,26 @@ public class RevealJSConverter extends TextTemplateConverter {
 
   }
 
-  protected void transformDocument(Document slidesDocument, Configuration config) {
+  protected void transformDocument(final Document slidesDocument, final Configuration config) {
     super.transformDocument(slidesDocument, config);
     if (config.notesIncluded()) {
-      for (Element notesElement : slidesDocument.select("aside")) {
+      for (final Element notesElement : slidesDocument.select("aside")) {
         notesElement.addClass("notes");
       }
-    } 
+    }
     if (config.listsIncremented()) {
-      for (Element list : slidesDocument.select("div li")) {
+      for (final Element list : slidesDocument.select("div li")) {
         list.addClass("fragment").addClass("roll-in");
       }
     }
+  }
+
+  public String getId() {
+    return CONVERTER_ID;
+  }
+
+  public String getDescription() {
+    return "http://lab.hakim.se/reveal-js/";
   }
 
 }

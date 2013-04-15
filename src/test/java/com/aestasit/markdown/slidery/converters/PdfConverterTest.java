@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.aestasit.markdown.slidery.converters.Configuration;
+import com.aestasit.markdown.slidery.configuration.Configuration;
 import com.aestasit.markdown.slidery.converters.ConverterFactory;
 import com.aestasit.markdown.slidery.converters.PdfConverter;
 

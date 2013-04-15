@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import com.aestasit.markdown.slidery.configuration.Configuration;
 import com.lowagie.text.DocumentException;
 
 /**
@@ -25,7 +26,7 @@ public class PdfConverter extends TextTemplateConverter {
 
   public static final String CONVERTER_ID = "pdf";
 
-  protected void beforeStart(Configuration config) {
+  protected void beforeStart(final Configuration config) {
     config
         .templateFile(classpath("pdf/template.html"))
         .staticFile("style", classpath("pdf/style/base.css"))
@@ -34,46 +35,54 @@ public class PdfConverter extends TextTemplateConverter {
         .staticFile("style", classpath("pdf/style/reset.css"));
   }
 
-  protected void afterConversion(File joinedInputFile, Configuration config) {
+  protected void afterConversion(final File joinedInputFile, final Configuration config) {
     convertToPdf(config.getOutputFile());
     if (config.isSplitOutput()) {
-      for (File inputFile : config.getInputFiles()) {
+      for (final File inputFile : config.getInputFiles()) {
         convertToPdf(getSplitOutputFile(config.getOutputFile(), inputFile));
       }
     }
     deleteStaticFiles(config);
   }
 
-  private void convertToPdf(File outputFile) {
+  private void convertToPdf(final File outputFile) {
     File tempFile = null;
     try {
-      ITextRenderer renderer = new ITextRenderer();
+      final ITextRenderer renderer = new ITextRenderer();
       renderer.setDocument(outputFile);
       renderer.layout();
       tempFile = File.createTempFile("slidery", ".pdf");
-      FileOutputStream outputStream = new FileOutputStream(tempFile);
+      final FileOutputStream outputStream = new FileOutputStream(tempFile);
       try {
         renderer.createPDF(outputStream, true);
-      } catch (DocumentException e) {
+      } catch (final DocumentException e) {
         throw new RuntimeException(e);
       } finally {
         closeQuietly(outputStream);
       }
       copyFile(tempFile, outputFile);
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new RuntimeException(e);
     } finally {
       deleteQuietly(tempFile);
     }
   }
 
-  private void deleteStaticFiles(Configuration config) {
-    File outputDirectory = config.getOutputFile().getParentFile();
-    for (Entry<String, File> fileEntry : config.getStaticFiles().entries()) {
-      String relativePath = fileEntry.getKey();
-      String fileName = fileEntry.getValue().getName();
+  private void deleteStaticFiles(final Configuration config) {
+    final File outputDirectory = config.getOutputFile().getParentFile();
+    for (final Entry<String, File> fileEntry : config.getStaticFiles().entries()) {
+      final String relativePath = fileEntry.getKey();
+      final String fileName = fileEntry.getValue().getName();
       deleteQuietly(new File(new File(outputDirectory, relativePath), fileName));
     }
+  }
+
+  public String getId() {
+    return CONVERTER_ID;
+  }
+
+  public String getDescription() {
+    return "Basic PDF converter.";
   }
 
 }

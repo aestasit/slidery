@@ -1,10 +1,31 @@
 Introduction
 =====================
 
-Slidery is a pure-Java library to support creation of presentation slides written in Markdown format.
+*Slidery* is a pure-*Java* library to support creation of presentation slides written in *Markdown* format.
 
 Getting started
 ======================
+
+
+Command line usage
+-----------------------
+
+`slidery slides.md`
+
+
+`slidery *.md`
+
+
+`slidery --output-file=result/slides.html *.md`
+
+
+`slidery --output-file=result/slides.html --format=dzslides  *.md`
+
+
+
+Library usage
+------------------------
+
 
 **TODO**
 
@@ -37,6 +58,8 @@ ConverterFactory
 
 Converters
 ======================
+
+
 
 **TODO**
 

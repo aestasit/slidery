@@ -19,6 +19,7 @@ dependencies {
   compile 'com.google.guava:guava:13.0.1'
   compile 'org.codehaus.groovy:groovy-templates:2.0.5'
   compile 'org.xhtmlrenderer:core-renderer:R8'
+  compile 'com.lexicalscope.jewelcli:jewelcli:0.8.3'
   compile ('com.uwyn:jhighlight:1.0') {
     exclude module: "servlet-api"
   }

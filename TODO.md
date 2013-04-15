@@ -10,6 +10,14 @@
 
 ### Slidery features:
 
+ * create command line tool
+ * create launch4j config and gradle integration
+ * create installer (inno setup for windows?)
+ * create rpm/deb???
+ * add a way to inject CSS/JS into main HTML
+
+ * add smiley support
+
  * support slide layout detection
  * support titleless slides
 
