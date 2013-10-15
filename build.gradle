@@ -8,12 +8,15 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
+apply plugin: 'application'
 
 apply from: 'repos.gradle'
 apply from: 'sonar.gradle'
 
 version = '0.4-SNAPSHOT'
 group = 'com.aestasit.markdown'
+
+mainClassName = 'com.aestasit.markdown.slidery.launcher.SlideryMain'
 
 dependencies {
   
