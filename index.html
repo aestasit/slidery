@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Slidery by aestasit</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Slidery</h1>
+        <p>A Java library to support creation of presentation slides written in Markdown.</p>
+
+        <p class="view"><a href="https://github.com/aestasit/slidery">View the Project on GitHub <small>aestasit/slidery</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/aestasit/slidery/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/aestasit/slidery/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/aestasit/slidery">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p><em>Slidery</em> is a pure-<em>Java</em> library to support creation of presentation slides written in <em>Markdown</em> format.</p>
+
+<h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h1>
+
+<h2>
+<a name="command-line-usage" class="anchor" href="#command-line-usage"><span class="octicon octicon-link"></span></a>Command line usage</h2>
+
+<p><code>slidery slides.md</code></p>
+
+<p><code>slidery *.md</code></p>
+
+<p><code>slidery --output-file=result/slides.html *.md</code></p>
+
+<p><code>slidery --output-file=result/slides.html --format=dzslides  *.md</code></p>
+
+<h2>
+<a name="library-usage" class="anchor" href="#library-usage"><span class="octicon octicon-link"></span></a>Library usage</h2>
+
+<p><strong>TODO</strong></p>
+
+<div class="highlight highlight-java"><pre>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">aestasit</span><span class="o">.</span><span class="na">markdown</span><span class="o">.</span><span class="na">Resources</span><span class="o">.</span><span class="na">classpath</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">com</span><span class="o">.</span><span class="na">aestasit</span><span class="o">.</span><span class="na">markdown</span><span class="o">.</span><span class="na">Resources</span><span class="o">.</span><span class="na">file</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.aestasit.markdown.slidedown.converters.ConverterFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.aestasit.markdown.slidedown.converters.DeckJSConverter</span><span class="o">;</span>
+
+<span class="o">...</span>
+
+<span class="n">Configuration</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleConfiguration</span><span class="o">()</span>
+   <span class="o">.</span><span class="na">inputFile</span><span class="o">(</span><span class="n">classpath</span><span class="o">(</span><span class="s">"01_simple_slides.md"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">inputFile</span><span class="o">(</span><span class="n">classpath</span><span class="o">(</span><span class="s">"02_image_slides.md"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">inputFile</span><span class="o">(</span><span class="n">classpath</span><span class="o">(</span><span class="s">"03_code_slides.md"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">inputFile</span><span class="o">(</span><span class="n">classpath</span><span class="o">(</span><span class="s">"04_slide_notes.md"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">staticFile</span><span class="o">(</span><span class="n">classpath</span><span class="o">(</span><span class="s">"LOGO_300dpi.png"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">staticFile</span><span class="o">(</span><span class="n">classpath</span><span class="o">(</span><span class="s">"LOGO_FULL_300dpi.png"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">outputFile</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">"./tmp/presentation.html"</span><span class="o">))</span>
+   <span class="o">.</span><span class="na">encoding</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
+
+<span class="n">ConverterFactory</span>
+   <span class="o">.</span><span class="na">createConverter</span><span class="o">(</span><span class="n">DeckJSConverter</span><span class="o">.</span><span class="na">CONVERTER_ID</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">render</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+
+</pre></div>
+
+<h1>
+<a name="converters" class="anchor" href="#converters"><span class="octicon octicon-link"></span></a>Converters</h1>
+
+<p><strong>TODO</strong></p>
+
+<h1>
+<a name="themes" class="anchor" href="#themes"><span class="octicon octicon-link"></span></a>Themes</h1>
+
+<p><strong>TODO</strong></p>
+
+<h1>
+<a name="images" class="anchor" href="#images"><span class="octicon octicon-link"></span></a>Images</h1>
+
+<p><strong>TODO</strong></p>
+
+<h1>
+<a name="advanced-configuration" class="anchor" href="#advanced-configuration"><span class="octicon octicon-link"></span></a>Advanced configuration</h1>
+
+<p><strong>TODO</strong></p>
+
+<h1>
+<a name="recommendations" class="anchor" href="#recommendations"><span class="octicon octicon-link"></span></a>Recommendations</h1>
+
+<p><strong>TODO</strong></p>
+
+<h1>
+<a name="custom-converters" class="anchor" href="#custom-converters"><span class="octicon octicon-link"></span></a>Custom converters</h1>
+
+<p><strong>TODO</strong></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/aestasit">aestasit</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
