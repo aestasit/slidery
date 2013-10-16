@@ -1,17 +1,28 @@
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'maven'
-apply plugin: 'jacoco'
+buildscript {
+  repositories { mavenCentral() }
+  dependencies { classpath 'org.ajoberstar:gradle-git:0.6.3' }
+}
+
 apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+apply plugin: 'github-pages'
 
 apply from: 'repos.gradle'
 apply from: 'sonar.gradle'
+apply from: 'docs.gradle'
 
-version = '0.4-SNAPSHOT'
 group = 'com.aestasit.markdown'
+version = '0.4-SNAPSHOT'
 
 mainClassName = 'com.aestasit.markdown.slidery.launcher.SlideryMain'
+
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
 
 dependencies {
   
@@ -28,12 +39,17 @@ dependencies {
     exclude module: "servlet-api"
   }
   
-  testCompile 'junit:junit:4.11'
+  testCompile 'junit:junit:4.+'
   testRuntime 'ch.qos.logback:logback-core:1.0.7'
   testRuntime 'ch.qos.logback:logback-classic:1.0.7'
   
 }
 
+configurations {
+  all*.exclude group: 'commons-logging'
+  all*.exclude group: 'log4j'
+  all*.exclude module: 'slf4j-simple'
+}
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
   classifier = 'javadoc'
@@ -49,4 +65,8 @@ artifacts {
   archives jar
   archives javadocJar
   archives sourcesJar
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.8'
 }

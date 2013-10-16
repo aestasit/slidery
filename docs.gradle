@@ -1,0 +1,9 @@
+
+githubPages {                                        
+  repoUri = "https://github.com/aestasit/${githubProjectName}.git"
+  pages {
+    from(javadoc.outputs.files) {
+      into 'docs/javadoc'
+    }
+  }
+}

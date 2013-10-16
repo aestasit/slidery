@@ -2,9 +2,7 @@ apply plugin: 'maven'
 
 repositories {
   mavenCentral()
-  maven {
-    url "https://oss.sonatype.org/content/repositories/snapshots/"
-  }
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 uploadArchives {
@@ -14,22 +12,22 @@ uploadArchives {
       authentication(userName: ossSnapshotRepositoryUserName, password: ossSnapshotRepositoryPassword)
     }
     pom.project {
-      name 'Slidery'
+      name pomProjectTitle
       packaging 'jar'
-      description 'Slidery is a Java library to support creation of presentation slides written in Markdown.'
-      url 'https://github.com/aestasit/slidery'    
+      description pomProjectDescription
+      url "https://github.com/aestasit/${githubProjectName}"
       scm {
-        url 'scm:git@github.com:aestasit/slidery'
-        connection 'scm:git@github.com:aestasit/slidery'
-        developerConnection 'scm:git@github.com:aestasit/slidery'
-      }                                            
+        url "scm:git@github.com:aestasit/${githubProjectName}.git"
+        connection "scm:git@github.com:aestasit/${githubProjectName}.git"
+        developerConnection "scm:git@github.com:aestasit/${githubProjectName}.git"
+      }
       licenses {
         license {
           name 'The Apache Software License, Version 2.0'
           url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
           distribution 'repo'
         }
-      }    
+      }
       developers {
         developer {
           id 'aadamovich'
