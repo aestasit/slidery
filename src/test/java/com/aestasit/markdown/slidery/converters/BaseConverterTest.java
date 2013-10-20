@@ -43,7 +43,7 @@ public class BaseConverterTest extends BaseTest {
         .staticFile(classpath("LOGO_FULL_300dpi.png"))
         .outputFile(file("./tmp/presentation.html"))
         .author("Andrey Adamovich")
-        .company("Aestas IT")
+        .company("Aestas/IT")
         .title("Test presentation")
         .description("Conversion library testing")
         .date(createDate())
