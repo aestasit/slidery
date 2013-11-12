@@ -16,6 +16,8 @@
 
 package com.aestasit.markdown.slidery.converters;
 
+import static com.aestasit.markdown.slidery.Slidery.PEGDOWN_ENABLE_ALL_EXTENSIONS;
+import static com.aestasit.markdown.slidery.Slidery.PEGDOWN_ENABLE_ALL_EXTENSIONS_AND_SUPPRESS_HTML;
 import static com.aestasit.markdown.slidery.Slidery.toDom;
 import static org.apache.commons.io.FileUtils.copyFileToDirectory;
 import static org.apache.commons.io.FileUtils.deleteDirectory;
@@ -24,6 +26,8 @@ import static org.apache.commons.io.FileUtils.forceMkdir;
 import static org.apache.commons.io.FileUtils.openOutputStream;
 import static org.apache.commons.io.FileUtils.readLines;
 import static org.apache.commons.io.FileUtils.writeLines;
+import static org.apache.commons.io.FilenameUtils.getBaseName;
+import static org.apache.commons.io.FilenameUtils.getExtension;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.File;
@@ -35,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import static org.apache.commons.io.FilenameUtils.*;
 import org.jsoup.nodes.Document;
 
 import com.aestasit.markdown.slidery.configuration.Configuration;
@@ -133,7 +136,11 @@ public abstract class BaseConverter implements Converter {
     FileOutputStream outputStream = null;
     try {
       outputStream = openOutputStream(outputFile);
-      convert(new OutputStreamWriter(outputStream), toDom(inputFile), config);
+      int parserOptions = PEGDOWN_ENABLE_ALL_EXTENSIONS_AND_SUPPRESS_HTML;
+      if (!config.htmlStripped()) {
+        parserOptions = PEGDOWN_ENABLE_ALL_EXTENSIONS;
+      }
+      convert(new OutputStreamWriter(outputStream), toDom(inputFile, parserOptions), config);
     } finally {
       closeQuietly(outputStream);
     }

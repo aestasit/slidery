@@ -59,6 +59,7 @@ public class SimpleConfiguration implements Configuration {
   private String theme;
   private String font;
   private URL fontLink;
+  
   private final Map<String, String> colors = new HashMap<String, String>();
   private final Multimap<String, String> transitionRules = HashMultimap.create();
   private final Multimap<String, String> stylingRules = HashMultimap.create();
@@ -66,6 +67,7 @@ public class SimpleConfiguration implements Configuration {
   private boolean notesIncluded = true;
   private boolean listIncremented = true;
   private boolean splitOutput = false;
+  private boolean stripHtml = true;  
 
   public SimpleConfiguration() {
     super();
@@ -473,6 +475,23 @@ public class SimpleConfiguration implements Configuration {
   }
 
   @Override
+  public ConfigurationBuilder stripHtml() {
+    stripHtml = true; 
+    return this;
+  }
+
+  @Override
+  public ConfigurationBuilder stripHtml(boolean state) {
+    stripHtml = state;
+    return this;
+  }
+
+  @Override
+  public boolean htmlStripped() {
+    return stripHtml;
+  }
+  
+  @Override
   public ConfigurationBuilder inputFile(final File inputFile, final Transition transition) {
     // TODO Auto-generated method stub
     return null;
@@ -555,11 +574,11 @@ public class SimpleConfiguration implements Configuration {
   }
 
   private final static class FileNameComparator implements Comparator<File> {
-
     @Override
     public int compare(final File o1, final File o2) {
       return o1.getName().compareTo(o2.getName());
     }
   }
+
 
 }

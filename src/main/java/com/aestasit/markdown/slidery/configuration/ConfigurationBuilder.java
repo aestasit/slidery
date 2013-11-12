@@ -105,6 +105,10 @@ public interface ConfigurationBuilder {
 
   ConfigurationBuilder excludeNotes();
 
+  ConfigurationBuilder stripHtml();
+
+  ConfigurationBuilder stripHtml(boolean state);   
+  
   // Styling
   ConfigurationBuilder theme(String name);
 

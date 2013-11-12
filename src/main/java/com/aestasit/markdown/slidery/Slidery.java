@@ -39,47 +39,82 @@ import com.google.common.base.Preconditions;
  */
 public final class Slidery {
 
-  public static int DEFAULT_PEGDOWN_OPTIONS = Extensions.ALL + Extensions.SUPPRESS_ALL_HTML;
+  public static int PEGDOWN_ENABLE_ALL_EXTENSIONS = Extensions.ALL;  
+  public static int PEGDOWN_ENABLE_ALL_EXTENSIONS_AND_SUPPRESS_HTML = Extensions.ALL + Extensions.SUPPRESS_ALL_HTML;
+  
+  public static int DEFAULT_PEGDOWN_OPTIONS = PEGDOWN_ENABLE_ALL_EXTENSIONS_AND_SUPPRESS_HTML;
 
   public static String toSlides(RootNode node) {
     Preconditions.checkNotNull(node, "astRoot");
     return getConverter().toHtml(node);
   }
 
-  public static String toSlides(InputStream stream) throws IOException {
+  public static String toSlides(InputStream stream, int options) throws IOException {
     Preconditions.checkNotNull(stream, "inputStream");
-    return getConverter().toHtml(Markdown.toAst(stream, DEFAULT_PEGDOWN_OPTIONS));
+    return getConverter().toHtml(Markdown.toAst(stream, options));
+  }
+
+  public static String toSlides(InputStream stream) throws IOException {
+    return toSlides(stream, DEFAULT_PEGDOWN_OPTIONS); 
+  }
+
+  public static String toSlides(String text, int options) throws IOException {
+    Preconditions.checkNotNull(text, "text");
+    return getConverter().toHtml(Markdown.toAst(new ByteArrayInputStream(text.getBytes()), options));
   }
 
   public static String toSlides(String text) throws IOException {
-    Preconditions.checkNotNull(text, "text");
-    return getConverter().toHtml(Markdown.toAst(new ByteArrayInputStream(text.getBytes()), DEFAULT_PEGDOWN_OPTIONS));
+    return toSlides(text, DEFAULT_PEGDOWN_OPTIONS);
+  }
+
+  public static String toSlides(File file, int options) throws IOException {
+    Preconditions.checkNotNull(file, "file");
+    return getConverter().toHtml(Markdown.toAst(file, options));
   }
 
   public static String toSlides(File file) throws IOException {
-    Preconditions.checkNotNull(file, "file");
-    return getConverter().toHtml(Markdown.toAst(file, DEFAULT_PEGDOWN_OPTIONS));
+    return toSlides(file, DEFAULT_PEGDOWN_OPTIONS);
+  }
+
+  public static String toSlides(URL url, int options) throws IOException {
+    Preconditions.checkNotNull(url, "url");
+    return getConverter().toHtml(Markdown.toAst(url.openStream(), options));
   }
 
   public static String toSlides(URL url) throws IOException {
-    Preconditions.checkNotNull(url, "url");
-    return getConverter().toHtml(Markdown.toAst(url.openStream(), DEFAULT_PEGDOWN_OPTIONS));
+    return toSlides(url, DEFAULT_PEGDOWN_OPTIONS);
   }
 
   public static Document toDom(String text) throws IOException {
     return Jsoup.parse(toSlides(text));
   }
 
+  public static Document toDom(String text, int options) throws IOException {
+    return Jsoup.parse(toSlides(text, options));
+  }
+
   public static Document toDom(File file) throws IOException {
     return Jsoup.parse(toSlides(file));
+  }
+
+  public static Document toDom(File file, int options) throws IOException {
+    return Jsoup.parse(toSlides(file, options));
   }
 
   public static Document toDom(URL url) throws IOException {
     return Jsoup.parse(toSlides(url));
   }
 
+  public static Document toDom(URL url, int options) throws IOException {
+    return Jsoup.parse(toSlides(url, options));
+  }
+
   public static Document toDom(InputStream stream) throws IOException {
     return Jsoup.parse(toSlides(stream));
+  }
+
+  public static Document toDom(InputStream stream, int options) throws IOException {
+    return Jsoup.parse(toSlides(stream, options));
   }
 
   public static Document toDom(RootNode node) throws IOException {

@@ -62,6 +62,8 @@ public interface ConfigurationReader {
   boolean listsIncremented();
 
   boolean notesIncluded();
+  
+  boolean htmlStripped();
 
   String getTheme();
 
