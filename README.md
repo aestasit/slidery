@@ -94,5 +94,3 @@ Custom converters
 **TODO**
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aestasit/slidery/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
