@@ -4,7 +4,7 @@ version = '0.4-SNAPSHOT'
 
 buildscript {
   repositories { mavenCentral() }
-  dependencies { classpath 'org.ajoberstar:gradle-git:0.6.3' }
+  dependencies { classpath 'org.ajoberstar:gradle-git:0.8.0' }
 }
 
 apply plugin: 'application'
