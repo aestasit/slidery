@@ -29,10 +29,10 @@ dependencies {
   compile 'org.pegdown:pegdown:1.2.0'
   compile 'commons-io:commons-io:1.4'
   compile 'org.apache.commons:commons-lang3:3.1'
-  compile 'org.slf4j:slf4j-api:1.7.2'
+  compile "org.slf4j:slf4j-api:${slf4jVersion}"
   compile 'org.jsoup:jsoup:1.6.1'
   compile 'com.google.guava:guava:13.0.1'
-  compile 'org.codehaus.groovy:groovy-templates:2.0.5'
+  compile "org.codehaus.groovy:groovy-templates:${groovyVersion}"
   compile 'org.xhtmlrenderer:core-renderer:R8'
   compile 'com.lexicalscope.jewelcli:jewelcli:0.8.3'
   compile ('com.uwyn:jhighlight:1.0') {
@@ -40,8 +40,8 @@ dependencies {
   }
   
   testCompile 'junit:junit:4.11'
-  testRuntime 'ch.qos.logback:logback-core:1.1.2'
-  testRuntime 'ch.qos.logback:logback-classic:1.1.2'
+  testRuntime "ch.qos.logback:logback-core:${logbackVersion}"
+  testRuntime "ch.qos.logback:logback-classic:${logbackVersion}"
   
 }
 
