@@ -1,10 +1,252 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
+	<classpathentry kind="src" output="build/resources/test" path="src/test/resources">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/test" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/resources/main" path="src/main/resources">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/main" path="src/main/java">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/test" path="build/generated/sources/annotationProcessor/java/test">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/main" path="build/generated/sources/annotationProcessor/java/main">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JavaSE-11">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.4/a8762d07e76cfde2395257a5da47ba7c1dbd3dce/commons-io-1.4.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.4/48753e43ff29409fbbeadfb36186cbe27e41b179/commons-io-1.4-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="commons-io"/>
+			<attribute name="artifactId" value="commons-io"/>
+			<attribute name="version" value="1.4"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-xml/2.3.6/cb21666b123086bad2c6bad0d581265145216a23/groovy-xml-2.3.6.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-xml/2.3.6/e27b7d5977674e42f1ba91fabac1b2ec9d3f4f6c/groovy-xml-2.3.6-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.codehaus.groovy"/>
+			<attribute name="artifactId" value="groovy-xml"/>
+			<attribute name="version" value="2.3.6"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy/2.3.6/58479615c4a53124169506b0275de5cf366b0f35/groovy-2.3.6.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy/2.3.6/28645838c685c331292e2c98dfe1a06f1114c20a/groovy-2.3.6-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.codehaus.groovy"/>
+			<attribute name="artifactId" value="groovy"/>
+			<attribute name="version" value="2.3.6"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/4.0/67bd266cd17adcee486b76952ece4cc85fe248b8/asm-tree-4.0.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/4.0/4a33d6206d6d442446a8edbd2b0798ecfaebc229/asm-tree-4.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.ow2.asm"/>
+			<attribute name="artifactId" value="asm-tree"/>
+			<attribute name="version" value="4.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/bouncycastle/bcmail-jdk14/138/14ff2dfec8578f5f6838c4d6a77a86789afe5382/bcmail-jdk14-138.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="bouncycastle"/>
+			<attribute name="artifactId" value="bcmail-jdk14"/>
+			<attribute name="version" value="138"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.lowagie/itext/2.0.8/3734dd08e513c321d2121f2b3a7498300c596fe3/itext-2.0.8.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.lowagie/itext/2.0.8/ddd89fde30264c9e5003a2f8c52094dcc7752ed2/itext-2.0.8-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="com.lowagie"/>
+			<attribute name="artifactId" value="itext"/>
+			<attribute name="version" value="2.0.8"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-java/1.1.3/c2bf2935a8b3eca5f998557190cd6eb34f5536d0/parboiled-java-1.1.3.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-java/1.1.3/e6480d92983330f7f21c67f12fe341117beb8b97/parboiled-java-1.1.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.parboiled"/>
+			<attribute name="artifactId" value="parboiled-java"/>
+			<attribute name="version" value="1.1.3"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/4.0/1c45d52b6f6c638db13cf3ac12adeb56b254cdd7/asm-analysis-4.0.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/4.0/4a33d6206d6d442446a8edbd2b0798ecfaebc229/asm-analysis-4.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.ow2.asm"/>
+			<attribute name="artifactId" value="asm-analysis"/>
+			<attribute name="version" value="4.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/4.0/659add6efc75a4715d738e73f07505246edf4d66/asm-4.0.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/4.0/4a33d6206d6d442446a8edbd2b0798ecfaebc229/asm-4.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.ow2.asm"/>
+			<attribute name="artifactId" value="asm"/>
+			<attribute name="version" value="4.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-templates/2.3.6/1940e2c948bb402b52d0d1496c3c738975e0cb0b/groovy-templates-2.3.6.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-templates/2.3.6/3fa92ae3f075f77d265ea18e34da25af8dc873f8/groovy-templates-2.3.6-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.codehaus.groovy"/>
+			<attribute name="artifactId" value="groovy-templates"/>
+			<attribute name="version" value="2.3.6"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.xhtmlrenderer/core-renderer/R8/88e6306a7c88e3c3082ae548999025cb14002f1/core-renderer-R8.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.xhtmlrenderer/core-renderer/R8/895674c26bbea6bd507ba06fa6c93de546aa168f/core-renderer-R8-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.xhtmlrenderer"/>
+			<attribute name="artifactId" value="core-renderer"/>
+			<attribute name="version" value="R8"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/905075e6c80f206bbe6cf1e809d2caa69f420c76/commons-lang3-3.1.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/8d30b90ae8bda4fbac8363161c8a9b5a99e23baf/commons-lang3-3.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.apache.commons"/>
+			<attribute name="artifactId" value="commons-lang3"/>
+			<attribute name="version" value="3.1"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-core/1.1.3/3fc3013adf98701efcc594a1ea99a3f841dc81bb/parboiled-core-1.1.3.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-core/1.1.3/ff580847d485c83babea45fca456c86b7df8538/parboiled-core-1.1.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.parboiled"/>
+			<attribute name="artifactId" value="parboiled-core"/>
+			<attribute name="version" value="1.1.3"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.slf4j"/>
+			<attribute name="artifactId" value="slf4j-api"/>
+			<attribute name="version" value="1.7.7"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/bouncycastle/bcprov-jdk14/138/de366c3243a586eb3c0e2bcde1ed9bb1bfb985ff/bcprov-jdk14-138.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="bouncycastle"/>
+			<attribute name="artifactId" value="bcprov-jdk14"/>
+			<attribute name="version" value="138"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/d6f22b1e60a2f1ef99e22c9f5fde270b2088365/guava-13.0.1.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/13.0.1/ea42e17f75a65e72d12cd311b7d1e7d6356bbb3f/guava-13.0.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="com.google.guava"/>
+			<attribute name="artifactId" value="guava"/>
+			<attribute name="version" value="13.0.1"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.pegdown/pegdown/1.2.0/198bf1ee31c4387561d7f135398e0c8357b9b8aa/pegdown-1.2.0.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.pegdown/pegdown/1.2.0/96fc6e2a1ba932c5a6dca2d491027e74daa94af1/pegdown-1.2.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.pegdown"/>
+			<attribute name="artifactId" value="pegdown"/>
+			<attribute name="version" value="1.2.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.lexicalscope.jewelcli/jewelcli/0.8.3/e4fe0ed09a978f7cc6bd00c360cfea877718e124/jewelcli-0.8.3.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.lexicalscope.jewelcli/jewelcli/0.8.3/5382f7598294eb54b99ef87529cbad20230b584a/jewelcli-0.8.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="com.lexicalscope.jewelcli"/>
+			<attribute name="artifactId" value="jewelcli"/>
+			<attribute name="version" value="0.8.3"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.uwyn/jhighlight/1.0/b1774029ee29472df8c25e5ba796431f7689fd6/jhighlight-1.0.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/com.uwyn/jhighlight/1.0/e3200d8bd33baa572d7db647839d5f2ade58efc1/jhighlight-1.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="com.uwyn"/>
+			<attribute name="artifactId" value="jhighlight"/>
+			<attribute name="version" value="1.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.6.1/70f0dfbe511d84ee7d0dda238a52746751787c47/jsoup-1.6.1.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.6.1/c99ecd66a78769494f30a375f45a19333980cc9/jsoup-1.6.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.jsoup"/>
+			<attribute name="artifactId" value="jsoup"/>
+			<attribute name="version" value="1.6.1"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/4.0/d7a65f54cda284f9706a750c23d64830bb740c39/asm-util-4.0.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/4.0/4a33d6206d6d442446a8edbd2b0798ecfaebc229/asm-util-4.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.ow2.asm"/>
+			<attribute name="artifactId" value="asm-util"/>
+			<attribute name="version" value="4.0"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/junit/junit/4.11/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="junit"/>
+			<attribute name="artifactId" value="junit"/>
+			<attribute name="version" value="4.11"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="org.hamcrest"/>
+			<attribute name="artifactId" value="hamcrest-core"/>
+			<attribute name="version" value="1.3"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.2/b316e9737eea25e9ddd6d88eaeee76878045c6b2/logback-classic-1.1.2.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.2/decd76e2c461157804473468bbdc6b8eb6d6121b/logback-classic-1.1.2-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="ch.qos.logback"/>
+			<attribute name="artifactId" value="logback-classic"/>
+			<attribute name="version" value="1.1.2"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.2/2d23694879c2c12f125dac5076bdfd5d771cc4cb/logback-core-1.1.2.jar" sourcepath="/Users/andrey.adamovich/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.2/502e1c764542fe747896c1dc04f023acfe0e5cbc/logback-core-1.1.2-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="groupId" value="ch.qos.logback"/>
+			<attribute name="artifactId" value="logback-core"/>
+			<attribute name="version" value="1.1.2"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

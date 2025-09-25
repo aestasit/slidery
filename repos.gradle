@@ -1,6 +1,4 @@
 
-apply plugin: 'maven'
-
 repositories {
   mavenCentral()
   maven { url ossSnapshotRepositoryUrl }
@@ -9,43 +7,58 @@ repositories {
 if (!project.version.endsWith('-SNAPSHOT')) {
   apply plugin: 'signing'
   signing {
-    sign configurations.archives
+    sign publishing.publications.maven
   }
 }
 
-uploadArchives {
-  repositories.mavenDeployer {
-    if (project.version.endsWith('-SNAPSHOT')) { 
-      repository(url: ossSnapshotRepositoryUrl) {
-        authentication(userName: ossSnapshotRepositoryUserName, password: ossSnapshotRepositoryPassword)
-      }
-    } else {
-      repository(url: ossReleaseRepositoryUrl) {
-        authentication(userName: ossReleaseRepositoryUserName, password: ossReleaseRepositoryPassword)
-      }
-      beforeDeployment { deployment -> signing.signPom(deployment) }
-    }
-    pom.project {
-      name pomProjectTitle
-      packaging 'jar'
-      description pomProjectDescription
-      url "https://github.com/aestasit/${githubProjectName}"
-      scm {
-        url "scm:git@github.com:aestasit/${githubProjectName}.git"
-        connection "scm:git@github.com:aestasit/${githubProjectName}.git"
-        developerConnection "scm:git@github.com:aestasit/${githubProjectName}.git"
-      }
-      licenses {
-        license {
-          name 'The Apache Software License, Version 2.0'
-          url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-          distribution 'repo'
+publishing {
+  publications {
+    maven(MavenPublication) {
+      from components.java
+      
+      pom {
+        name = pomProjectTitle
+        packaging = 'jar'
+        description = pomProjectDescription
+        url = "https://github.com/aestasit/${githubProjectName}"
+        
+        scm {
+          url = "scm:git@github.com:aestasit/${githubProjectName}.git"
+          connection = "scm:git@github.com:aestasit/${githubProjectName}.git"
+          developerConnection = "scm:git@github.com:aestasit/${githubProjectName}.git"
+        }
+        
+        licenses {
+          license {
+            name = 'The Apache Software License, Version 2.0'
+            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            distribution = 'repo'
+          }
+        }
+        
+        developers {
+          developer {
+            id = 'aadamovich'
+            name = 'Andrey Adamovich'
+          }
         }
       }
-      developers {
-        developer {
-          id 'aadamovich'
-          name 'Andrey Adamovich'
+    }
+  }
+  
+  repositories {
+    maven {
+      if (project.version.endsWith('-SNAPSHOT')) {
+        url = ossSnapshotRepositoryUrl
+        credentials {
+          username = ossSnapshotRepositoryUserName
+          password = ossSnapshotRepositoryPassword
+        }
+      } else {
+        url = ossReleaseRepositoryUrl
+        credentials {
+          username = ossReleaseRepositoryUserName
+          password = ossReleaseRepositoryPassword
         }
       }
     }
